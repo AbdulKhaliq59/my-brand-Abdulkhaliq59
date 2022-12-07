@@ -5,6 +5,7 @@
   padding: 0;
   font-family: "inter", sans-serif;
 }
+/* Style for home page */
 li,
 a {
   font-weight: bold;
@@ -52,7 +53,7 @@ header {
 }
 main{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .description_container{
   margin: 120px auto auto 97px; 
@@ -86,18 +87,52 @@ main{
   cursor: pointer;
   border: none;
 }
+
 .profile_container{
   margin: 0px 97px auto auto;
   height: 600px;
   width: 500px;
 }
 #profile{
-  
-  height: 100%;
+  height: 90%;
   width: 90%;
   padding-top: 60px;
   padding-bottom: 70px;
 }
+
+/* responsive for homepage */
+@media only screen and (max-width: 670px) {
+  header{
+   width: 100%; 
+  }
+  main{
+    display: flex;
+    flex-direction: column;
+  }
+  .profile_container{
+    display: flex;
+    justify-content: center;
+  }
+  #profile{
+  /* margin-left: 90px; */
+  }
+  .nav__links{
+    visibility: hidden;
+  }
+  .login{
+    /* visibility: hidden; */
+  }
+}
+@media only screen and (max-width: 570px) {
+  .profile_container{
+  
+  }
+  #profile{
+    height: 70%;
+    width: 70%;
+  }
+}
+/* Style for About pages */
 .main_about{
   display: flex;
   justify-content: space-around;
@@ -137,6 +172,36 @@ main{
 .par_skills_items{
   padding-bottom: 20px;
 }
+/* responsive style for about page */
+@media only screen and (max-width: 700px) {
+  .about_right{
+    margin-bottom: -60px;
+  }
+  .about_left{
+    margin-left: 20px;
+  }
+  .btn_readmore{
+    margin-bottom: 20px;
+  }
+}
+@media only screen and (max-width: 670px) {
+  .main_about{
+    display: flex;
+    flex-direction: column;
+  }
+  .about_right{
+    max-width: 60%;
+  }
+  .about_left{
+     align-self: center;
+     max-width: 70%;
+     max-height: 70%;
+   }
+   .btn_readmore{
+    margin-bottom: 20px;  
+   }
+}
+
 .main_login{
   display: flex;
   justify-content: space-between;
@@ -206,6 +271,43 @@ margin-left: auto;
   color: #0466c8;
   font-weight: 100;
 }
+/* responsive style for login page */
+@media only screen and (max-width: 650px) {
+.main_login{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+.login_icon{
+  max-height: 75%;
+  max-width: 75%;
+  margin-left:30px;
+}
+.login_icon img{
+  width: 100%;
+  height: 100%;
+}
+.login_card
+{
+  background: #D9D9D9;
+  border-radius: 10px;
+  box-shadow: 1px 2px 8px rgba(9, 80, 146, 0.65);
+  height: 450px;
+  margin: 1.2rem auto 8.1rem auto;
+  width: 350px;
+  display:flex;
+  justify-content:center ;
+}
+.login_form input{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  /* display: inline-block; */
+  border: 1px solid #ccc;
+  /* box-sizing: border-box; */
+  border-radius: 10px;
+}
+}
 /* style for portfolio page */
 .main_portfolio
 {
@@ -227,7 +329,6 @@ margin-left: auto;
   font-size: 24px;
   margin-top: 80px;
   margin-left: 19px;
-  
 }
 .portfolio_title_desc{
   font-weight: 400;
@@ -290,8 +391,30 @@ margin-left: auto;
 .slide input:checked{
   background-color: #0466c8;
 }
-
-/* style for contact page */
+/* responsive style Portfolio */
+@media only screen and (max-width: 650px) {
+  .main_portfolio{
+    display: flex;
+    justify-content: center;
+  }
+  .portfolio_content_description{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+  }
+  .portfolio_image{
+    
+  }
+  .portfolio_content{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  .slide{
+    padding-bottom: 20px;
+  }
+}
+/* style for contact page*/
 .main_contact{
   display: flex;
   justify-content: center;
@@ -428,6 +551,56 @@ justify-content: center;
   border-radius: 10px;
   padding-bottom: 10px;
 }
+
+/* responsive style for password Recover page*/
+@media only screen and (max-width: 650px) {
+  .main_recover{
+    display: flex;
+    flex-direction: column;
+  }
+  .recover_form_title h1{
+    padding-bottom:27px;
+  }
+  .recover_icon{
+    margin-top: 2.2rem;
+    max-width: 75%;
+    max-height: 75%;
+  }
+  .recover_icon img{
+    width: 100%;
+    height: 100%;
+    margin-left: -30px;
+  }
+  .recover_card{
+    background: #D9D9D9;
+    border-radius: 10px;
+    box-shadow: 1px 2px 8px rgba(9, 80, 146, 0.65);
+    height: 250px;
+    margin: 9.2rem auto 8.1rem auto;
+    width: 400px;
+    display:flex;
+    justify-content:center ;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+
+  .recover_card{
+    background: #D9D9D9;
+    border-radius: 10px;
+    box-shadow: 1px 2px 8px rgba(9, 80, 146, 0.65);
+    height: 250px;
+    margin: 2.2rem auto 8.1rem auto;
+    width: 370px;
+    display:flex;
+    justify-content:center ;
+  }
+}
+
+
+
+
+
 /* style for Blog page */
 #blog{
   display: flex;
@@ -510,7 +683,7 @@ flex-direction: column;
   margin: 20px 0px;
 }
 .blog-text a{
-  color: #071B30;
+  /* color: #071B30; */
 }
 /* reponsive for Blog page */
 @media screen and(max-width:1250px){
