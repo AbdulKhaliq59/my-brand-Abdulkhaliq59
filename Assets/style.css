@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
-* {
+*{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -32,7 +32,7 @@ ul{
 /*header*/
 .header{
 	background-color: var(--color-1);
-	padding:12px 0;
+	padding:0px 0;
 	position: relative;
 }
 .header .logo,
@@ -255,12 +255,16 @@ main{
       display: flex;
       flex-direction: column;
     }
+    .profile_container{
+      margin-left: 20px;
+      height: 500px;
+      width: 370px;
+    }
     #profile{
       align-items: center;
       margin-left: 30px;
       width: 85%;
       height: 85%;
-
     }
   }
   /* iPads (portrait and landscape) ----------- */
@@ -275,7 +279,15 @@ main{
       width: 100%;
     }
     }
-
+@media only screen and (max-width:650px)
+{
+  .header {
+    
+  }
+  .par_description{
+ margin-right: 12rem;
+  }
+}
 /* Style for About pages */
 .main_about{
   display: flex;
@@ -428,11 +440,23 @@ margin-left: auto;
 .login_icon{
   max-height: 75%;
   max-width: 75%;
-  margin-left:30px;
+  margin-left:50px;
+}
+/* Signup image */
+#signup_icon{
+  margin-top: 60px;
+  margin-left: 90px;
+  max-width: 85%;
+  max-height: 85%;
+}
+#signup_icon img{
+  width: 60%;
+  height: 60%;
 }
 .login_icon img{
-  width: 100%;
-  height: 100%;
+  margin-left: 50px;
+  width: 90%;
+  height: 90%;
 }
 .login_card
 {
@@ -454,6 +478,18 @@ margin-left: auto;
   /* box-sizing: border-box; */
   border-radius: 10px;
 }
+}
+@media only screen and (max-width: 900px) {
+  #signup_icon{
+    margin-top: 60px;
+    margin-left: 90px;
+    max-width: 85%;
+    max-height: 85%;
+  }
+  #signup_icon img{
+    width: 60%;
+    height: 60%;
+  }
 }
 /* style for portfolio page */
 .main_portfolio
@@ -567,12 +603,12 @@ margin-left: auto;
   justify-content: center;
 }
 .contact_container{
-  background: #D9D9D9;
-  border-radius: 10px;
-  box-shadow: 1px 2px 8px rgba(9, 80, 146, 0.65);
-  height: 552px;
+  /* background: #D9D9D9; */
+  /* border-radius: 10px; */
+  /* box-shadow: 1px 2px 8px rgba(9, 80, 146, 0.65); */
+  /* height: 552px; */
   margin: 1.2rem auto 8.1rem auto;
-  width: 895px;
+  /* width: 895px; */
   display:flex;
   justify-content:space-between; 
 }
@@ -581,9 +617,17 @@ margin-left: auto;
   border-radius: 10px;
   box-shadow: 1px 2px 8px rgba(9, 80, 146, 0.65);
   height: 552px;
-  width: 470px;
+  width: 447.5px;
   /* display: flex; */
   /* justify-content: center; */
+}
+.contact_container_right{
+  margin-left: 20px;
+  background: #EBEBEB;
+  border-radius: 10px;
+  box-shadow: 1px 2px 8px rgba(9, 80, 146, 0.65);
+  height: 552px;
+  width: 447.5px;
 }
 .contact_container_left_header{
 display: flex;
@@ -599,12 +643,12 @@ justify-content: center;
 .contact_container_left_form{
   display: flex;
   justify-content: center;
-  margin-left: 70px;
+  margin-left: 40px;
 }
 .contact_container_left input {
   /* display: flex; */
   /* justify-content: center; */
-  width: 80%;
+  width: 90%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -614,7 +658,7 @@ justify-content: center;
 }
 #textarea{
   border-radius: 10px;
-  width: 80%;
+  width: 90%;
   padding: 22px 20px;
   margin-top: 10px;
   margin-bottom: 20px;
@@ -628,10 +672,11 @@ justify-content: center;
   margin: 0;
   border: none;
   cursor: pointer;
-  width: 80%;
+  width: 90%;
   border-radius: 10px;
   padding-bottom: 10px;
 }
+
 .contact_container_right_img{
   align-self:center;
   margin-top: 22.5px;
@@ -647,7 +692,42 @@ justify-content: center;
   padding-bottom: 10px;
   margin-left: 10px;
 }
-
+/* responsive style for contact page */
+@media only screen and (max-width: 650px) {
+  .header{
+    /* width: 430px; */
+  }
+  .main_contact{
+    width: 430px;
+  }
+  .contact_container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 30%;
+}
+.contact_container_left{
+  width: 90%;
+  margin-bottom: 20px;
+}
+.contact_container_right{
+  width: 90%;
+  margin-bottom: 55%;
+  margin-left: -2px;
+}
+.contact_container_left_form{
+margin-left: 7px;
+}
+.contact_container_left_form input{
+width: 98%;
+}
+#textarea{
+  width: 98%;
+}
+.submit_button{
+  width: 98%;
+}
+}
 /* Style for recover page */
 .main_recover{
   display: flex;
@@ -698,7 +778,6 @@ justify-content: center;
   border-radius: 10px;
   padding-bottom: 10px;
 }
-
 /* responsive style for password Recover page*/
 @media only screen and (max-width: 650px) {
   .main_recover{
@@ -714,8 +793,8 @@ justify-content: center;
     max-height: 75%;
   }
   .recover_icon img{
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 80%;
     margin-left: -30px;
   }
   .recover_card{
@@ -729,9 +808,40 @@ justify-content: center;
     justify-content:center ;
   }
 }
-
+@media only screen and (max-width: 320px) {
+  .recover_icon {
+    margin-left: 20%;
+    margin-bottom: 60px;
+  }
+  .recover_icon img{
+    margin-bottom: 60px;
+  }
+  .recover_card{
+    background: #D9D9D9;
+    border-radius: 10px;
+    box-shadow: 1px 2px 8px rgba(9, 80, 146, 0.65);
+    height: 250px;
+    margin: 9.2rem auto 8.1rem 90px;
+    width: 320px;
+      display:flex;
+      justify-content:center ;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .recover_icon{
+    margin-left: 35%;
+    margin-bottom: -80px;
+  }
+  .recover_form input{
+    width: 120%;
+    margin-left: -20px;
+  }
+  }
+  .recover_button{
+    width: 120%;
+    margin-left: -20px;
+  }
 @media only screen and (max-width: 450px) {
-
   .recover_card{
     background: #D9D9D9;
     border-radius: 10px;
