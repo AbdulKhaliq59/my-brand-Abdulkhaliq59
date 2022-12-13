@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../Assets/img/Logo.png" type="image/png">
+    <link rel="stylesheet" href="../../Assets/style.css">
+    <link rel="stylesheet" href="adminstyle.css">
+    <title>Admin Section | Add post </title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+               <div class="logo">
+                 <a href="#"><img src="../../Assets/img/Logo.png" alt=""></a>
+               </div>
+               <input type="checkbox" id="nav-check">
+               <label for="nav-check" class="nav-toggler">
+                  <span></span>
+               </label>
+               <nav class="nav">
+                  <ul>
+                        <div class="drop">
+                            <li><i class="fa-solid fa-user"></i>
+                            <span class="user_name">Abdoul Khaliq</span>
+                            <div class="dropdown">
+                                <i class="fa-sharp fa-solid fa-caret-down"></i>
+                            <div class="dropdown-content">
+                                <a href="">Profile</a>
+                                <a href="">Logout</a>
+                            </div>
+                            </div>
+                        </div>
+                    </li>
+                  </ul>
+               </nav>
+            </div>
+        </div>
+     </header>
+     
+        <!-- PAGE WRAPPER -->
+        <div class="admin-wrapper">
+            <!-- Left side bar -->
+            <div class="left-sidebar">
+                <ul>
+                    <li><a href="index.html">Manage Blog</a></li>
+                    <li><a href="../Message/message.html">Message</a></li>
+                    <li><a href="../Project/project.html">Manage Project</a></li>
+                </ul>
+            </div>
+            <!-- Admin content -->
+            <div class="admin-content">
+                <div class="button-group">
+                    <a href="create.html" class="btn btn-big">Add post</a> 
+                    <a href="index.html" class="btn btn-big">Manage</a> 
+                </div>
+
+                <div class="contents">
+                    <h2 class="page-title">Manage posts</h2>
+                    <form action="create.html" method="post">
+                        <div>
+                            <label for="Title">Title</label>
+                            <input type="text" name="title" id="" class="text-input">
+                        </div>
+                        <div>
+                            <label for="Title">Description</label>
+                            <textarea name="body" id="body" rows="10" cols="20px"></textarea>
+                        </div>
+                        <div>
+                            <label for="">Topic</label>
+                            <select name="topic" id="selection" class="text-input">
+                                <option value="Poetry" >Poetry</option>
+                                <option value="Life Lesson">Life Lesson</option>
+                                <option value="Poetry">Poetry</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-big"> Add Post</button>
+                        </div>
+                    </form>    
+                </div>
+            </div>
+        </div>
+     <script src="https://kit.fontawesome.com/4d8e21eecf.js" crossorigin="anonymous"></script>
+     <script src="https://cdn.ckeditor.com/ckeditor5/35.3.2/classic/ckeditor.js"></script>
+     <script src="./js/script.js"></script>
+</body>
+</html>
