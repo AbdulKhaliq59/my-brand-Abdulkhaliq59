@@ -9,7 +9,7 @@
 }    
 .left-sidebar{  
 /* padding-left: 10px; */
-padding-bottom: 40%;
+padding-bottom: 60%;
 flex: 2;
 height: 100%;
 display: flex;
@@ -42,10 +42,13 @@ overflow-y: scroll;
     color: #0466c8;
     font-weight: bold;
 }
+#page-title{
+    font-size: 16px;
+}
 table{
     width: 100%;
     border-collapse: collapse;
-    font-size: 1.1rem;
+    font-size: .9rem;
 }
 th,
 td{
@@ -88,7 +91,7 @@ text-input:active{
 }
 label{
     padding-bottom: 20px;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
 }
 #selection{
