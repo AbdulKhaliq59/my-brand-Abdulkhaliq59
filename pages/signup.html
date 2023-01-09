@@ -28,8 +28,7 @@
                    <li><a href="./blog.html">Blog</a></li>
                    <li><a href="./contact.html">contact</a></li>
                    <li><button class="nav_login"><a href="./login.html" id="nav_login_name">Login</a></button></li>
-                </ul>
-                
+                </ul>                
              </nav>
           </div>
       </div>
@@ -45,15 +44,17 @@
             <div class="login_form_title">
               <h1>Sign  up</h1>
             </div>
-            <input type="text" placeholder="Enter your username or email"><br>
-            <input type="password" placeholder="Enter your password"><br>
-            <input type="password" placeholder="Enter your password"> 
-            <button class="login_button">Sign up</button>
+            <input type="text" placeholder="Enter your username or email" id="email" required><br>
+            <input type="password" placeholder="Enter your password" id="password" required><br>
+            <input type="password" placeholder="Enter your password" id="confirmedPassword" required> 
+            <button class="login_button" onclick="save()" type="submit">Sign up</button>
             <div class="possibilities">
               <p class="possibilities_2">Already have an account? <a href="login.html">Log in</a></p> <br>
             </div>
           </form>
         </div>
+
     </main>
+    <script src="./signupScript.js"></script>
 </body>
 </html>
