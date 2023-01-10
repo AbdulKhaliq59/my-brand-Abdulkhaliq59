@@ -46,7 +46,7 @@
             <div class="left-sidebar">
                 <ul>
                     <li><a href="index.html">Manage Blog</a></li>
-                    <li><a href="./Message/message.html">Message</a></li>
+                    <li><a href="./Message/index.html">Message</a></li>
                     <li><a href="./Project/project.html">Manage Project</a></li>
                     <li><a href="./user/user.html">Manage User</a></li>
                 </ul>
@@ -63,11 +63,11 @@
                     <form action="create.html" method="post">
                         <div>
                             <label for="Title">Title</label>
-                            <input type="text" name="title" id="" class="text-input">
+                            <input type="text" name="title" id="blog_title" class="text-input">
                         </div>
                         <div>
                             <label for="Title">Date</label>
-                            <input type="Date" name="title" id="" class="text-input">
+                            <input type="Date" name="title" id="blog_Date" class="text-input">
                         </div>
                         <div>
                             <label for="">Topic</label>
@@ -79,14 +79,14 @@
                         </div>
                         <div>
                             <label for="Title">Description</label>
-                            <textarea name="body" id="body" rows="10" cols="20px"></textarea>
+                            <textarea name="body" id="body" class="blogDescription" rows="10" cols="20px"></textarea>
                         </div>
                         <div>
                             <label for="Title">Upload Picture</label>
-                            <input type="file" name="title" id="" class="text-input">
+                            <input type="file" name="title" id="blog_picture" class="text-input">
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-big"> Add Post</button>
+                            <button type="button" class="btn btn-big" onclick="post()"> Add Post</button>
                         </div>
                     </form>    
                 </div>
@@ -95,5 +95,33 @@
      <script src="https://kit.fontawesome.com/4d8e21eecf.js" crossorigin="anonymous"></script>
      <script src="https://cdn.ckeditor.com/ckeditor5/35.3.2/classic/ckeditor.js"></script>
      <script src="./js/script.js"></script>
+     <script>
+        
+        function post()
+        {
+            const blogTitle= document.getElementById('blog_title');
+            const blogDate= document.getElementById('blog_Date').value;
+            const blogDescription=document.querySelector('.blogDescription');
+            const blogType= document.getElementById('selection')
+            const blogDescriptionValue=blogDescription.value
+            console.log(blogDescriptionValue);
+            var dateEntered= new Date(blogDate);
+            var options={
+                year:'numeric',
+                month:'2-digit',
+                day:'2-digit'
+            }
+            var formattedDate= dateEntered.toLocaleDateString('en-US',options);
+            console.log(formattedDate);
+            // const blogPicture=document.getElementById('blog_picture');
+            let blogDetails={
+            blogTitle:blogTitle.value,
+            blogDate:formattedDate,
+            blogDescription:blogDescriptionValue,
+            blogType:blogType.value
+        }
+            console.log(blogDetails);
+        }
+     </script>
 </body>
 </html>

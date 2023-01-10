@@ -30,7 +30,7 @@
                                 <i class="fa-sharp fa-solid fa-caret-down"></i>
                             <div class="dropdown-content">
                                 <a href="">Profile</a>
-                                <a href="">Logout</a>
+                                <a href="../../../index.html">Logout</a>
                             </div>
                             </div>
                         </div>
@@ -62,14 +62,9 @@
                 <div class="contents" id="contents">
                     <h2 class="page-title" id="page-title">Manage Message</h2>
                     <table>
-                        <thead>
-                            <th>SN</th>
-                            <th>Email</th>
-                            <th>FullName</th>
-                            <th>Message</th>
-                            <th colspan="3">Actions</th>
-                        </thead>
-                        <tbody>
+                        <div id="tableBody" onload="table()">
+                        </div >
+                        <!-- <tbody >
                             <tr>
                                 <td>1</td>
                                 <td>Test@gmail.com</td>
@@ -86,7 +81,7 @@
                                 <td><a href="" class="edit">Reply</a></td>
                                 <td><a href="" class="delete">Delete</a></td>
                             </tr>
-                        </tbody>
+                        </tbody> -->
                     </table>
                 </div>
             </div>
@@ -94,5 +89,43 @@
 
 
      <script src="https://kit.fontawesome.com/4d8e21eecf.js" crossorigin="anonymous"></script>
+     <script>
+        let table=`
+                    <table>
+                        <thead>
+                            <th>SN</th>
+                            <th>Email</th>
+                            <th>FullName</th>
+                            <th>Message</th>
+                            <th colspan="3">Actions</th>
+                        </thead>
+                    `
+                    ;
+        let Data=localStorage.getItem('contactUs');
+        console.log(Data);
+        if(Data)
+        { 
+            contactUsDetail=JSON.parse(Data);
+        }
+        console.log(Data);
+        //  console.log(contactUs[0].fullName);
+            let tbody=`<tbody>`
+                for( let i=0;i<contactUsDetail.length;i++)
+                {
+                    table=table+`<tr>
+                     <td>${i+1}</td>
+                     <td>${contactUsDetail[i].fullName}</td>
+                     <td>${contactUsDetail[i].email}</td>
+                     <td>${contactUsDetail[i].textArea}</td>
+                     <td><a href="" class="edit" onClick="edit(${i})">Reply</a></td>
+                     <td><a href="" class="delete" onClick="delete(${i})">Delete</a></td>
+                     </tr>`
+                }
+                table=table+`</tbody>
+                </table>
+                `;
+            document.getElementById('tableBody').innerHTML=table;
+        
+     </script>
 </body>
 </html>

@@ -28,8 +28,7 @@
                      <li><a href="./blog.html">Blog</a></li>
                      <li><a href="./contact.html">contact</a></li>
                      <li><button class="nav_login"><a href="./login.html" id="nav_login_name">Login</a></button></li>
-                  </ul>
-                  
+                  </ul>     
                </nav>
             </div>
         </div>
@@ -44,10 +43,10 @@
                 </div>
                     <div class="contact_container_left_form">
                         <form action="">
-                            <input type="text" placeholder="Enter your full Name">
-                            <input type="email" placeholder="Enter your email">
-                            <textarea name="" id="textarea" cols="30" rows="10" placeholder="Message"></textarea><br>
-                            <button class="submit_button">Submit</button>
+                            <input type="text"  id="fullName" placeholder="Enter your full Name" required>
+                            <input type="email" id="email" placeholder="Enter your email" required>
+                            <textarea name="" id="textarea" cols="30" rows="10" placeholder="Message" required></textarea><br>
+                            <button class="submit_button" type="button" onclick="send()">Submit</button>
                         </form>
                     </div>
             </div>
@@ -63,5 +62,27 @@
             </div>
         </div>
       </main>
+      <script>
+        let contactUs=[];
+          function send()
+          {
+            const fullName=document.getElementById('fullName');
+            const email=document.getElementById('email');
+            const textArea=document.getElementById('textarea');      
+            let contactData={
+                fullName:fullName.value,
+                email:email.value,
+                textArea:textArea.value
+            }
+            contactUs.push(contactData);
+            setContactData();
+          }
+          function setContactData()
+          {
+            localStorage.setItem("contactUs",JSON.stringify(contactUs));
+            alert("Your feedback sent successfully");
+          }
+      </script>
 </body>
+
 </html>

@@ -6,7 +6,9 @@ let userDetails=[];
   var email=document.getElementById("email");
   var password=document.getElementById("password");
   var confirmedPassword=document.getElementById("confirmedPassword");
-  alert("your email is"+email.value);
+  if(password.value===confirmedPassword.value)
+  {
+    alert("your email is"+email.value);
   alert("your password is"+password.value);
   let userData=
   {
@@ -16,6 +18,11 @@ let userDetails=[];
   }
   userDetails.push(userData);
   setData()
+  }
+  else
+  {
+    alert("Please check your password and confirmed Password");
+  }
 }
 //Function to put data in localstorage
 function setData()
