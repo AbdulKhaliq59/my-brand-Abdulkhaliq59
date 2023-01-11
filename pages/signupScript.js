@@ -8,8 +8,6 @@ let userDetails=[];
   var confirmedPassword=document.getElementById("confirmedPassword");
   if(password.value===confirmedPassword.value)
   {
-    alert("your email is"+email.value);
-  alert("your password is"+password.value);
   let userData=
   {
       email:email.value,
@@ -18,6 +16,7 @@ let userDetails=[];
   }
   userDetails.push(userData);
   setData()
+  alert("Hopefully Now You can Login")
   }
   else
   {

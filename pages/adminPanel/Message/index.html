@@ -117,14 +117,19 @@
                      <td>${contactUsDetail[i].fullName}</td>
                      <td>${contactUsDetail[i].email}</td>
                      <td>${contactUsDetail[i].textArea}</td>
-                     <td><a href="" class="edit" onClick="edit(${i})">Reply</a></td>
-                     <td><a href="" class="delete" onClick="delete(${i})">Delete</a></td>
+                     <td><a href="" class="edit" onClick="reply(${i})">Reply</a></td>
+                     <td><a href="" class="delete" onClick="deleteMessage(${i})">Delete</a></td>
                      </tr>`
                 }
                 table=table+`</tbody>
-                </table>
-                `;
-            document.getElementById('tableBody').innerHTML=table;
+                </table>`;
+                document.getElementById('tableBody').innerHTML=table;
+                function deleteMessage(index)
+                {
+                 contactUsDetail.splice(index,1);
+                 localStorage.setItem("contactUs",JSON.stringify(contactUsDetail));
+                 document.getElementById('tableBody').innerHTML=table;
+                }
         
      </script>
 </body>

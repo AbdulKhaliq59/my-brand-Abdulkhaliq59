@@ -52,16 +52,18 @@
                 </ul>
             </div>
             <!-- Admin content -->
+            
             <div class="admin-content">
                 <div class="button-group">
                     <a href="create.html" class="btn btn-big">Add post</a> 
                     <a href="index.html" class="btn btn-big">Manage</a> 
                 </div>
-
+                
                 <div class="contents">
-                    <h2 class="page-title" id="page-title">Manage posts</h2>
-                    <table>
-                        <thead>
+                    <div id="form"></div>
+                    <h2 class="page-title" id="page-title">Manage posts</h2>            
+                    <table id="tableBody"> 
+                        <!-- <thead>
                             <th>PN</th>
                             <th>Title post</th>
                             <th>Date</th>
@@ -104,13 +106,85 @@
                                 <td><a href="" class="delete">Delete</a></td>
                                 <td><a href="" class="publish">Publish</a></td>
                             </tr>
-                        </tbody>
+                        </tbody> -->
                     </table>
+                    
                 </div>
+                
             </div>
         </div>
-
+        
 
      <script src="https://kit.fontawesome.com/4d8e21eecf.js" crossorigin="anonymous"></script>
+     <script>
+        let blogData=JSON.parse(localStorage.getItem('blogData'));
+        let table=`<thead>
+                            <th>PN</th>
+                            <th>Title post</th>
+                            <th>Date</th>
+                            <th>Topic</th>
+                            <th>Description</th>
+                            <th>Image</th>
+                            <th colspan="3">Actions</th>
+                        </thead>`;
+            let tbody=`<tbody>`
+                for(let i=0;i<blogData.length;i++)
+                {
+                    table=table+`<tr>
+                        <td>${i+1}</td>
+                        <td>${blogData[i].blogTitle}</td>
+                        <td>${blogData[i].blogDate}</td>
+                        <td>${blogData[i].blogDescription}</td>
+                        <td>${blogData[i].blogPicture}</td>
+                        <td><a href="" class="edit" onClick="edit(${i})">Edit</a></td>
+                        <td><a href="" class="delete"onClick="deleteData(${i})">Delete </a></td>
+                        <td><a href="" class="publish" onClick="publish(${i})">Publish</a></td>
+                        </tr>`
+                }
+                table=table+`</tbody>`;
+                document.getElementById('tableBody').innerHTML=table;
+                function deleteData(index)
+                {
+                    blogData.splice(index,1);
+                    localStorage.setItem("blogData",JSON.stringify(blogData));
+                    post();
+                }
+                function edit(index)
+                {
+                    let editForm=`<div class="contents">
+                    <h2 class="page-title">Edit posts</h2>
+                    <form action="create.html" method="post">
+                        <div>
+                            <label for="Title">Title</label>
+                            <input type="text" name="title" id="blog_title" class="text-input" value="${blogData[index].blogTitle}">
+                        </div>
+                        <div>
+                            <label for="Title">Date</label>
+                            <input type="Date" name="title" id="blog_Date" class="text-input" value="${blogData[index].blogDate}">
+                        </div>
+                        <div>
+                            <label for="">Topic</label>
+                            <select name="topic" id="selection" class="text-input">
+                                <option value="Poetry" >Web Design</option>
+                                <option value="Life Lesson">Life Lesson</option>
+                                <option value="Poetry">Inspiration</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="Title">Description</label>
+                            <textarea name="body" id="body" class="blogDescription" rows="10" cols="78" value="${blogData[index].blogDescription}"></textarea>
+                        </div>
+                        <div>
+                            <label for="Title">Upload Picture</label>
+                            <input type="file" name="title" id="blog_picture" class="text-input" value="${blogData[index].blogPicture}">
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-big" onclick="post()"> Update Post</button>
+                        </div>
+                    </form>
+                    </div>`;
+                    document.getElementById('form').innerHTML=editForm;
+                }
+     </script>
 </body>
 </html>

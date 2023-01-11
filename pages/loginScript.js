@@ -11,8 +11,7 @@ function login(e)
         return window.location.href="http://127.0.0.1:5501/pages/adminPanel/index.html";
     }
     else{
-        alert("username or password is invalid");
-        
+        alert("username or password is invalid");   
     }
     // alert("email "+email.value);
     // alert("userDetails"+userDetails.userDetails.email); 

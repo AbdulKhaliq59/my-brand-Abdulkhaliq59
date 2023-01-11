@@ -111,13 +111,18 @@
                     <td>${i+1}</td>
                     <td>${userDetails[i].email}</td>
                     <td>${userDetails[i].password}</td>
-                    <td><a href="" class="edit" onClick="edit(${i})">Reply</a></td>
-                    <td><a href="" class="delete" onClick="delete(${i})">Delete</a></td>
+                    <td><a href="" class="delete" onClick="deleteUser(${i})">Delete</a></td>
                     </tr>`
             }
             table=table+`</tbody>
             </table>`;
             document.getElementById('tableBody').innerHTML=table;
+            function deleteUser(index)
+            {
+             userDetails.splice(index,1);
+             localStorage.setItem("userDetails",JSON.stringify(userDetails));
+             document.getElementById('tableBody').innerHTML=table;
+            }
      </script>
 </body>
 </html>

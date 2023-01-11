@@ -79,7 +79,7 @@
                         </div>
                         <div>
                             <label for="Title">Description</label>
-                            <textarea name="body" id="body" class="blogDescription" rows="10" cols="20px"></textarea>
+                            <textarea name="body" id="body" class="blogDescription" rows="10" cols="78"></textarea>
                         </div>
                         <div>
                             <label for="Title">Upload Picture</label>
@@ -96,15 +96,15 @@
      <script src="https://cdn.ckeditor.com/ckeditor5/35.3.2/classic/ckeditor.js"></script>
      <script src="./js/script.js"></script>
      <script>
-        
-        function post()
+        let blogData=[];
+        function post(e)
         {
             const blogTitle= document.getElementById('blog_title');
             const blogDate= document.getElementById('blog_Date').value;
-            const blogDescription=document.querySelector('.blogDescription');
+            const blogDescription=document.getElementById('body').value
             const blogType= document.getElementById('selection')
-            const blogDescriptionValue=blogDescription.value
-            console.log(blogDescriptionValue);
+            const blogPicture=document.getElementById('blog_picture').files[0].name;
+            console.log(blogPicture);
             var dateEntered= new Date(blogDate);
             var options={
                 year:'numeric',
@@ -113,15 +113,20 @@
             }
             var formattedDate= dateEntered.toLocaleDateString('en-US',options);
             console.log(formattedDate);
-            // const blogPicture=document.getElementById('blog_picture');
+            
             let blogDetails={
             blogTitle:blogTitle.value,
             blogDate:formattedDate,
-            blogDescription:blogDescriptionValue,
-            blogType:blogType.value
+            blogDescription:blogDescription,
+            blogType:blogType.value,
+            blogPicture:blogPicture
         }
-            console.log(blogDetails);
+            blogData.push(blogDetails);
+            console.log(blogData);
+            localStorage.setItem("blogData",JSON.stringify(blogData));
+            alert("Data Sent successfully");
         }
+        
      </script>
 </body>
 </html>
