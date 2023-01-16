@@ -8,7 +8,7 @@ function login(e)
     if(email.value===firstDetail[0].email && password.value===firstDetail[0].password)
     {
         // alert("You are successfully logged in");
-        return window.location.href="http://127.0.0.1:5501/pages/adminPanel/index.html";
+        return window.location.href="/pages/adminPanel/index.html";
     }
     else{
         alert("username or password is invalid");   
