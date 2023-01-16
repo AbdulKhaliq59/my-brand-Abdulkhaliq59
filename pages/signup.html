@@ -10,22 +10,33 @@
 </head>
 <body>
      <!-- ============  HEADER ========== -->
-     <header class="header" id="header">
-        <img src="../Assets/img/Logo.png" class="logo" alt="logo" />
-        <nav>
-          <ul class="nav__links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../pages/About.html">About</a></li>
-            <li><a href="./Portfolio.html">Portfolio</a></li>
-            <li><a href="./blog.html">Blog</a></li>
-            <li><a href="./contact.html">Contact</a></li>
-          </ul>
-        </nav>
-        <a class="login" href=""><button class="btn_login">Login</button></a>
-      </header>
+     <header class="header">
+      <div class="container">
+          <div class="row align-items-center justify-content-between">
+             <div class="logo">
+               <a href="../index.html"><img src="../Assets/img/Logo.png" alt=""></a>
+             </div>
+             <input type="checkbox" id="nav-check">
+             <label for="nav-check" class="nav-toggler">
+                <span></span>
+             </label>
+             <nav class="nav">
+                <ul>
+                   <li><a href="../index.html" class="active">home</a></li>
+                   <li><a href="./About.html">about</a></li>
+                   <li><a href="./Portfolio.html">portfolio</a></li>
+                   <li><a href="./blog.html">Blog</a></li>
+                   <li><a href="./contact.html">contact</a></li>
+                   <li><button class="nav_login"><a href="./login.html" id="nav_login_name">Login</a></button></li>
+                </ul>                
+             </nav>
+          </div>
+      </div>
+   </header>
+
     <!-- =============== Body =============== -->
     <main class="main_login">
-        <div class="login_icon"> 
+        <div class="login_icon" id="signup_icon"> 
           <img src="../Assets/img/signup.png" alt="login icon">
         </div>
         <div class="login_card">
@@ -33,15 +44,17 @@
             <div class="login_form_title">
               <h1>Sign  up</h1>
             </div>
-            <input type="text" placeholder="Enter your username or email"><br>
-            <input type="password" placeholder="Enter your password"><br>
-            <input type="password" placeholder="Enter your password"> 
-            <button class="login_button">Sign up</button>
+            <input type="text" placeholder="Enter your username or email" id="email" required><br>
+            <input type="password" placeholder="Enter your password" id="password" required><br>
+            <input type="password" placeholder="Enter your password" id="confirmedPassword" required> 
+            <button class="login_button" onclick="save()" type="submit">Sign up</button>
             <div class="possibilities">
               <p class="possibilities_2">Already have an account? <a href="login.html">Log in</a></p> <br>
             </div>
           </form>
         </div>
+
     </main>
+    <script src="./signupScript.js"></script>
 </body>
 </html>

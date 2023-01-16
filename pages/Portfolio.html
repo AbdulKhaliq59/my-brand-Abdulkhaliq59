@@ -10,19 +10,31 @@
 </head>
 <body>
      <!-- ============  HEADER ========== -->
-     <header class="header" id="header">
-        <img src="../Assets/img/Logo.png" class="logo" alt="logo" />
-        <nav>
-          <ul class="nav__links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../pages/About.html">About</a></li>
-            <li><a href="./Portfolio.html">Portfolio</a></li>
-            <li><a href="./blog.html">Blog</a></li>
-            <li><a href="./contact.html">Contact</a></li>
-          </ul>
-        </nav>
-        <a class="login" href=""><button class="btn_login">Login</button></a>
-      </header>     
+     <header class="header">
+      <div class="container">
+          <div class="row align-items-center justify-content-between">
+             <div class="logo">
+               <a href="../index.html"><img src="../Assets/img/Logo.png" alt=""></a>
+             </div>
+             <input type="checkbox" id="nav-check">
+             <label for="nav-check" class="nav-toggler">
+                <span></span>
+             </label>
+             <nav class="nav">
+                <ul>
+                   <li><a href="../index.html" class="active">home</a></li>
+                   <li><a href="./About.html">about</a></li>
+                   <li><a href="./Portfolio.html">portfolio</a></li>
+                   <li><a href="./blog.html">Blog</a></li>
+                   <li><a href="./contact.html">contact</a></li>
+                   <li><button class="nav_login"><a href="./login.html" id="nav_login_name">Login</a></button></li>
+                </ul>
+                
+             </nav>
+          </div>
+      </div>
+   </header>
+
       <!-- ============== Portfolio ========== -->
       <main class="main_portfolio">
         <div class="portfolio_content">
@@ -33,8 +45,8 @@
             <p class="portfolio_title_desc">Most recent work</p>
             </div>
           </div>
-          
-          <div class="portfolio_content_description">
+          <!-- Portfolio 1 -->
+          <div class="portfolio_content_description" id="portfolio">
             <div class="portfolio_image">
               <img src="../Assets/img/moderWebsite.png" alt="modern website">
             </div>
@@ -50,13 +62,41 @@
               </div>
             </div>
           </div>
-          <div class="slide">
+          <!-- Portfolio 2 -->
+          <!-- <div class="portfolio_content_description" id="portfolio">
+            <div class="portfolio_image">
+              <img src="../Assets/img/onlineShop.png" alt="modern website">
+            </div>
+            <div class="portfolio_description">
+              <div class="portfolio_description_title">
+                <h1 class="portfolio_description_header">onine shop</h1>
+              </div>
+              <div class="portfolio_description_body">
+                <p>Website adaptable  to all <br> devices, with ui <br> components and animated <br> interactions</p>
+              </div>
+              <div class="portfolio_description_button">
+                <button>Demo</button>
+              </div>
+            </div>
+          </div> -->
+          <!-- <div class="slide">
             <input type="radio" name="" id="radio1">
             <input type="radio" name="" id="radio1" checked>
             <input type="radio" name="" id="radio1">
-          </div>
+          </div> -->
         </div>
         
       </main>
+      <script>
+       var portfolios=document.getElementById('portfolio');
+       var currentPortfolio=0;
+       function showNextPortfolio()
+       {
+        portfolios[currentPortfolio].style.display="none";
+        currentPortfolio=(currentPortfolio+1) % portfolios.length; 
+        portfolio[currentPortfolio].style.display="block";
+       }
+       setInterval(showNextPortfolio,3000)
+      </script>
 </body>
 </html>

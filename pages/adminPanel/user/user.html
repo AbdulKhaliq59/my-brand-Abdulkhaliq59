@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../Assets/img/Logo.png" type="image/png">
+    <link rel="stylesheet" href="../../../Assets/style.css">
+    <link rel="stylesheet" href="../adminstyle.css">
+    <link rel="stylesheet" href="../Message/Messagestyle.css">
+    <title>Admin Panel | user </title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+               <div class="logo">
+                 <a href="#"><img src="../../../Assets/img/Logo.png" alt=""></a>
+               </div>
+               <input type="checkbox" id="nav-check">
+               <label for="nav-check" class="nav-toggler">
+                  <span></span>
+               </label>
+               <nav class="nav">
+                  <ul>
+                        <div class="drop">
+                            <li><i class="fa-solid fa-user"></i>
+                            <span class="user_name">Abdoul Khaliq</span>
+                            <div class="dropdown">
+                                <i class="fa-sharp fa-solid fa-caret-down"></i>
+                            <div class="dropdown-content">
+                                <a href="../Profile/profile.html">Profile</a>
+                                <a href="../../../index.html">Logout</a>
+                            </div>
+                            </div>
+                        </div>
+                    </li>
+                  </ul>
+               </nav>
+            </div>
+        </div>
+     </header>
+     
+        <!-- PAGE WRAPPER -->
+        <div class="admin-wrapper">
+            <!-- Left side bar -->
+            <div class="left-sidebar">
+                <ul>
+                    <li><a href="../index.html">Manage Blog</a></li>
+                    <li><a href="../Message/index.html">Message</a></li>
+                    <li><a href="../Project/project.html">Manage Project</a></li>
+                    <li><a href="../user/user.html">Manage User</a></li>
+                </ul>
+            </div>
+            <!-- Admin content -->
+            <div class="admin-content">
+                <div class="button-group">
+                    <!-- <a href="create.html" class="btn btn-big">Add post</a> 
+                    <a href="index.html" class="btn btn-big">Manage</a>  -->
+                </div>
+
+                <div class="contents" id="contents">
+                    <h2 class="page-title" id="page-title">Manage User</h2>
+                    <table id="tableBody">
+                        <!-- <div id="tableBody">
+
+                        </div> -->
+                        <!-- <thead>
+                            <th>SN</th>
+                            <th>username</th>
+                            <th>Password</th>
+                            <th colspan="3">Actions</th>
+                        </thead> -->
+                        <!-- <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Test@gmail.com</td>
+                                <td>12345</td>
+                                <td><a href="" class="edit">Edit</a></td>
+                                <td><a href="" class="delete">Delete</a></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Test@gmail  .com</td>
+                                <td>12345</td>
+                                <td><a href="" class="edit">Edit</a></td>
+                                <td><a href="" class="delete">Delete</a></td>
+                            </tr>
+                        </tbody> -->
+                    </table>
+                </div>
+            </div>
+        </div>
+     <script src="https://kit.fontawesome.com/4d8e21eecf.js" crossorigin="anonymous"></script>
+     <script>
+        
+        let userDetails= JSON.parse(localStorage.getItem('userDetails'));
+        console.log(userDetails);
+        let table=`<thead>
+                            <th>SN</th>
+                            <th>email</th>
+                            <th>Password</th>
+                            <th colspan="3">Actions</th>
+                    </thead>`;
+        let tbody=`<tbody>`
+            for(let i=0; i<userDetails.length;i++)
+            {
+                table=table+`<tr>
+                    <td>${i+1}</td>
+                    <td>${userDetails[i].email}</td>
+                    <td>${userDetails[i].password}</td>
+                    <td><a href="" class="delete" onClick="deleteUser(${i})">Delete</a></td>
+                    </tr>`
+            }
+            table=table+`</tbody>
+            </table>`;
+            document.getElementById('tableBody').innerHTML=table;
+            function deleteUser(index)
+            {
+             userDetails.splice(index,1);
+             localStorage.setItem("userDetails",JSON.stringify(userDetails));
+             document.getElementById('tableBody').innerHTML=table;
+            }
+     </script>
+</body>
+</html>

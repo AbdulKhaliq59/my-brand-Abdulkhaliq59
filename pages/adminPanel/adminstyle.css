@@ -1,0 +1,110 @@
+/* Style for admin dashboard */
+.header{
+    background-color: #0a4d8f;
+}
+.admin-wrapper{
+    display: flex;
+    height: calc(100% - 66px);
+    /* border: 1px solid red; */
+}    
+.left-sidebar{  
+/* padding-left: 10px; */
+padding-bottom: 60%;
+flex: 2;
+height: 100%;
+display: flex;
+align-content: center;
+background-color: #0466c8;
+}
+.left-sidebar ul{
+    padding: 0;
+    width: 100%;
+    /* margin-top: 20px; */
+    /* background-color: #4098f0; */
+}
+.left-sidebar ul li a{
+    padding: 18px;
+    display: block;
+    border-bottom: 1px solid black;
+}
+.left-sidebar ul li a:hover{
+    background-color: #0a4d8f;
+}
+.admin-content {
+flex: 8;
+height: 100%;
+padding:  40px  100px 100px;
+overflow-y: scroll;
+}
+.admin-content .page-title{
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #0466c8;
+    font-weight: bold;
+}
+#page-title{
+    font-size: 16px;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .9rem;
+}
+th,
+td{
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid grey ;
+}
+.btn{
+  background-color: #0466c8;
+  color: #FFFFFF;
+  border-radius: 9px;
+  padding: 16px 20px;
+  margin-right: 2rem;
+  text-align: center;
+  display: inline-block;
+  font-weight: 500;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+}
+form div{
+ margin-bottom: 16px;
+}
+.text-input 
+{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  /* border: 1px solid #ccc; */
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+text-input:active{
+    border: none;
+}
+#body{
+    font-weight: 100;
+    padding-bottom: 20px;
+}
+label{
+    padding-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+#selection{
+    font-weight: 200;
+    font-size: 16px;
+}
+
+.edit{
+    color: green;
+}
+.delete{
+    color: red;
+}
+.publish{
+    color: #0466c8;
+}

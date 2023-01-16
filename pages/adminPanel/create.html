@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../Assets/img/Logo.png" type="image/png">
+    <link rel="stylesheet" href="../../Assets/style.css">
+    <link rel="stylesheet" href="adminstyle.css">
+    <title>Admin Section | Add post </title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+               <div class="logo">
+                 <a href="#"><img src="../../Assets/img/Logo.png" alt=""></a>
+               </div>
+               <input type="checkbox" id="nav-check">
+               <label for="nav-check" class="nav-toggler">
+                  <span></span>
+               </label>
+               <nav class="nav">
+                  <ul>
+                        <div class="drop">
+                            <li><i class="fa-solid fa-user"></i>
+                            <span class="user_name">Abdoul Khaliq</span>
+                            <div class="dropdown">
+                                <i class="fa-sharp fa-solid fa-caret-down"></i>
+                            <div class="dropdown-content">
+                                <a href="./Profile/profile.html">Profile</a>
+                                <a href="../../index.html">Logout</a>
+                            </div>
+                            </div>
+                        </div>
+                    </li>
+                  </ul>
+               </nav>
+            </div>
+        </div>
+     </header>     
+        <!-- PAGE WRAPPER -->
+        <div class="admin-wrapper">
+            <!-- Left side bar -->
+            <div class="left-sidebar">
+                <ul>
+                    <li><a href="index.html">Manage Blog</a></li>
+                    <li><a href="./Message/index.html">Message</a></li>
+                    <li><a href="./Project/project.html">Manage Project</a></li>
+                    <li><a href="./user/user.html">Manage User</a></li>
+                </ul>
+            </div>
+            <!-- Admin content -->
+            <div class="admin-content">
+                <div class="button-group">
+                    <a href="create.html" class="btn btn-big">Add post</a> 
+                    <a href="index.html" class="btn btn-big">Manage</a> 
+                </div>
+
+                <div class="contents">
+                    <h2 class="page-title">Manage posts</h2>
+                    <form action="create.html" method="post">
+                        <div>
+                            <label for="Title">Title</label>
+                            <input type="text" name="title" id="blog_title" class="text-input">
+                        </div>
+                        <div>
+                            <label for="Title">Date</label>
+                            <input type="Date" name="title" id="blog_Date" class="text-input">
+                        </div>
+                        <div>
+                            <label for="">Topic</label>
+                            <select name="topic" id="selection" class="text-input">
+                                <option value="Poetry" >Web Design</option>
+                                <option value="Life Lesson">Life Lesson</option>
+                                <option value="Poetry">Inspiration</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="Title">Description</label>
+                            <textarea name="body" id="body" class="blogDescription" rows="10" cols="78"></textarea>
+                        </div>
+                        <div>
+                            <label for="Title">Upload Picture</label>
+                            <input type="file" name="title" id="blog_picture" class="text-input">
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-big" onclick="post()"> Add Post</button>
+                        </div>
+                    </form>    
+                </div>
+            </div>
+        </div>
+     <script src="https://kit.fontawesome.com/4d8e21eecf.js" crossorigin="anonymous"></script>
+     <script src="https://cdn.ckeditor.com/ckeditor5/35.3.2/classic/ckeditor.js"></script>
+     <script src="./js/script.js"></script>
+     <script>
+        let blogData=[];
+        function post(e)
+        {
+            const blogTitle= document.getElementById('blog_title');
+            const blogDate= document.getElementById('blog_Date').value;
+            const blogDescription=document.getElementById('body').value
+            const blogType= document.getElementById('selection')
+            const blogPicture=document.getElementById('blog_picture').files[0].name;
+            console.log(blogPicture);
+            var dateEntered= new Date(blogDate);
+            var options={
+                year:'numeric',
+                month:'2-digit',
+                day:'2-digit'
+            }
+            var formattedDate= dateEntered.toLocaleDateString('en-US',options);
+            console.log(formattedDate);
+            
+            let blogDetails={
+            blogTitle:blogTitle.value,
+            blogDate:formattedDate,
+            blogDescription:blogDescription,
+            blogType:blogType.value,
+            blogPicture:blogPicture
+        }
+            blogData.push(blogDetails);
+            console.log(blogData);
+            localStorage.setItem("blogData",JSON.stringify(blogData));
+            alert("Data Sent successfully");
+        }
+        
+     </script>
+</body>
+</html>
