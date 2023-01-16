@@ -136,9 +136,8 @@
                         <td>${blogData[i].blogDate}</td>
                         <td>${blogData[i].blogDescription}</td>
                         <td>${blogData[i].blogPicture}</td>
-                        <td><a href="" class="edit" onClick="edit(${i})">Edit</a></td>
+                        <td><a href="./Edit.html" class="edit" onClick="setIndex(${i})">Edit</a></td>
                         <td><a href="" class="delete"onClick="deleteData(${i})">Delete </a></td>
-                        <td><a href="" class="publish" onClick="publish(${i})">Publish</a></td>
                         </tr>`
                 }
                 table=table+`</tbody>`;
@@ -149,41 +148,9 @@
                     localStorage.setItem("blogData",JSON.stringify(blogData));
                     post();
                 }
-                function edit(index)
+                function setIndex(index)
                 {
-                    let editForm=`<div class="contents">
-                    <h2 class="page-title">Edit posts</h2>
-                    <form action="create.html" method="post">
-                        <div>
-                            <label for="Title">Title</label>
-                            <input type="text" name="title" id="blog_title" class="text-input" value="${blogData[index].blogTitle}">
-                        </div>
-                        <div>
-                            <label for="Title">Date</label>
-                            <input type="Date" name="title" id="blog_Date" class="text-input" value="${blogData[index].blogDate}">
-                        </div>
-                        <div>
-                            <label for="">Topic</label>
-                            <select name="topic" id="selection" class="text-input">
-                                <option value="Poetry" >Web Design</option>
-                                <option value="Life Lesson">Life Lesson</option>
-                                <option value="Poetry">Inspiration</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="Title">Description</label>
-                            <textarea name="body" id="body" class="blogDescription" rows="10" cols="78" value="${blogData[index].blogDescription}"></textarea>
-                        </div>
-                        <div>
-                            <label for="Title">Upload Picture</label>
-                            <input type="file" name="title" id="blog_picture" class="text-input" value="${blogData[index].blogPicture}">
-                        </div>
-                        <div>
-                            <button type="button" class="btn btn-big" onclick="post()"> Update Post</button>
-                        </div>
-                    </form>
-                    </div>`;
-                    document.getElementById('form').innerHTML=editForm;
+                    localStorage.setItem('blogDataIndex',index);
                 }
      </script>
 </body>

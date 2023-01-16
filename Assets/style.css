@@ -479,6 +479,12 @@ margin-left: auto;
   font-weight: 100;
 }
 /* responsive style for login page */
+@media only screen and (max-width: 567px) {
+  .login_icon img{
+    /* margin-top: 20px; */
+    margin: 0 -170px 0 0;
+  }
+  }
 @media only screen and (max-width: 650px) {
 .main_login{
   display: flex;
@@ -490,6 +496,7 @@ margin-left: auto;
   max-width: 75%;
   margin-left:50px;
 }
+
 /* Signup image */
 #signup_icon{
   margin-top: 60px;
@@ -538,6 +545,9 @@ margin-left: auto;
     width: 60%;
     height: 60%;
   }
+  .login_icon{
+    margin-left: 200px;
+  }
 }
 /* style for portfolio page */
 .main_portfolio
@@ -566,16 +576,32 @@ margin-left: auto;
   color: #4B4B4B;
 }
 .portfolio_content_description{
-  display: flex;
+  display:flex;
   justify-content: space-around;
+  position:absolute;
+}
+@keyframes move-left{
+  from{
+    transform:translateX(0);
+  }
+  to{transform:translateX(-50%);
+  }
 }
 .portfolio_image{
   height: 50%;
   width: 50%;
   margin-left: 20px;
 }
+.portfolio_image img{
+  height:300px;
+  width:200px
+}
 .portfolio_description{
   margin-left: 16px;
+}
+#portfolio{
+  float:left;
+  animation:move-left 3s forwards;
 }
 .portfolio_description_header{
   font-weight: bold;
@@ -694,8 +720,6 @@ justify-content: center;
   margin-left: 40px;
 }
 .contact_container_left input {
-  /* display: flex; */
-  /* justify-content: center; */
   width: 90%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -740,6 +764,7 @@ justify-content: center;
   padding-bottom: 10px;
   margin-left: 10px;
 }
+
 /* responsive style for contact page */
 @media only screen and (max-width: 650px) {
   .header{
@@ -776,6 +801,30 @@ width: 98%;
   width: 98%;
 }
 }
+@media only screen and (max-width: 900px) {
+.contact_container{
+  display: flex;
+  flex-direction: column;
+}
+.contact_container_left{
+  margin-bottom: 35px;
+  margin-left: 20px;
+}
+}
+@media only screen and (max-width: 567px) {
+  .contact_container{
+    display: flex;
+    flex-direction: column;
+  }
+  .contact_container_left{
+    margin-bottom: 35px;
+    margin-left: -35px;
+  }
+  .contact_container_right{
+    margin-bottom: 35px;
+    margin-left: -35px;
+  }
+  }
 /* Style for recover page */
 .main_recover{
   display: flex;

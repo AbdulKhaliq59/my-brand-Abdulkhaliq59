@@ -56,21 +56,30 @@
                     <a href="create.html" class="btn btn-big">Add post</a> 
                     <a href="index.html" class="btn btn-big">Manage</a> 
                 </div>
-
                 <div class="contents">
-                    <h2 class="page-title">Manage posts</h2>
+                    <h2 class="page-title">Edit posts</h2>
+                    <div id="form">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+                let index=localStorage.getItem('blogDataIndex');
+                let blogData=JSON.parse(localStorage.getItem('blogData'));
+                    let editForm=`
                     <form action="create.html" method="post">
                         <div>
                             <label for="Title">Title</label>
-                            <input type="text" name="title" id="blog_title" class="text-input">
+                            <input type="text" name="title" id="newblog_title" class="text-input" value="${blogData[index].blogTitle}">
                         </div>
                         <div>
                             <label for="Title">Date</label>
-                            <input type="Date" name="title" id="blog_Date" class="text-input">
+                            <input type="Date" name="title" id="newblog_Date" class="text-input" value="">
                         </div>
                         <div>
                             <label for="">Topic</label>
-                            <select name="topic" id="selection" class="text-input">
+                            <select name="topic" id="Newselection" class="text-input">
                                 <option value="Poetry" >Web Design</option>
                                 <option value="Life Lesson">Life Lesson</option>
                                 <option value="Poetry">Inspiration</option>
@@ -78,54 +87,42 @@
                         </div>
                         <div>
                             <label for="Title">Description</label>
-                            <textarea name="body" id="body" class="blogDescription" rows="10" cols="78"></textarea>
+                            <textarea name="body" id="newbody" class="blogDescription" rows="10" cols="78" value="${blogData[index].blogDescription}"></textarea>
                         </div>
                         <div>
                             <label for="Title">Upload Picture</label>
-                            <input type="file" name="title" id="blog_picture" class="text-input">
+                            <input type="file" name="title" id="newblog_picture" class="text-input" value="${blogData[index].blogPicture}">
                         </div>
                         <div>
-                            <button type="button" class="btn btn-big" onclick="post()"> Add Post</button>
+                            <button type="button" class="btn btn-big" onclick="update(${index})"> Update Post</button>
                         </div>
-                    </form>    
-                </div>
-            </div>
-        </div>
-     <script src="https://kit.fontawesome.com/4d8e21eecf.js" crossorigin="anonymous"></script>
-     <script src="https://cdn.ckeditor.com/ckeditor5/35.3.2/classic/ckeditor.js"></script>
-     <script src="./js/script.js"></script>
-     <script>
-        let blogData=[];
-        function post(e)
-        {
-            const blogTitle= document.getElementById('blog_title');
-            const blogDate= document.getElementById('blog_Date').value;
-            const blogDescription=document.getElementById('body').value
-            const blogType= document.getElementById('selection')
-            const blogPicture=document.getElementById('blog_picture').files[0].name;
-            console.log(blogPicture);
-            var dateEntered= new Date(blogDate);
-            var options={
-                year:'numeric',
-                month:'2-digit',
-                day:'2-digit'
-            }
-            var formattedDate= dateEntered.toLocaleDateString('en-US',options);
-            console.log(formattedDate);
-            
-            let blogDetails={
-            blogTitle:blogTitle.value,
-            blogDate:formattedDate,
-            blogDescription:blogDescription,
-            blogType:blogType.value,
-            blogPicture:blogPicture
-        }
-            blogData.push(blogDetails);
-            console.log(blogData);
-            localStorage.setItem("blogData",JSON.stringify(blogData));
-            alert("Data Sent successfully");
-        }
-        
-     </script>
-</body>
-</html>
+                    </form>`;
+                    document.getElementById('form').innerHTML=editForm;
+                function update(index)
+                {
+                    let newblog_title= document.getElementById('newblog_title');
+                    let newblogDescription=document.getElementById('newbody');
+                    // let newBlogType=document.getElementById('newselection').value;
+                    let newDate=document.getElementById('newblog_date');
+                    var newDateEntered= new Date(newDate);
+                    var newBlogPicture=document.getElementById('newblog_picture').files[0].name;
+                    console.log(newBlogPicture)
+                    var options={
+                        year:'numeric',
+                        month:'2-digit',
+                        day:'2-digit'
+                    }
+                    var newBlogDate=newDateEntered.toLocaleDateString('en-US',options);
+                    blogData[index]={
+                        blogTitle: newblog_title.value,
+                        blogDate:newBlogDate,
+                        blogPicture:newBlogPicture
+                    }
+                    localStorage.setItem("blogData",JSON.stringify(blogData));
+                    console.log(blogData)
+                    alert("Your data updated Successfully");
+                    window.location.href="index.html";
+                }
+        </script>
+        </body>
+        </html>            

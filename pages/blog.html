@@ -87,20 +87,21 @@
                 </div>
             </div>
             <!-- Blog box 4 -->
-            <div id="blogads">
+            <div class="blog-box">
+                <div id="blogads">
 
+                </div>
             </div>
         </div>
       </section>
       <script>
         let blogData=JSON.parse(localStorage.getItem('blogData'));
         console.log(blogData);
-        let blogForm=`<div class="blog-box">
+        let blogForm=`
                     <div class="blog-img">`;
         for(let i=0;i<blogData.length;i++)
         {
-            blogForm=blogForm+`<div class="blog-box">
-                    <div class="blog-img">
+            blogForm=blogForm+`
                         <img src="../Assets/img/${blogData[i].blogPicture}" alt="Blog 1">
                     </div>
                     <!-- Text -->
@@ -109,8 +110,7 @@
                         <a href="#" class="blog_link">${blogData[i].blogTitle}</a>
                         <p>${blogData[i].blogDescription}</p>
                         <button class="btn_readmore"><a href="#">Read More</a></button> 
-                    </div>
-                </div>`
+                    </div>`
         }
         document.getElementById('blogads').innerHTML=blogForm;
       </script>

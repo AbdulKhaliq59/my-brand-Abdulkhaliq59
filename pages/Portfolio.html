@@ -45,8 +45,8 @@
             <p class="portfolio_title_desc">Most recent work</p>
             </div>
           </div>
-          
-          <div class="portfolio_content_description">
+          <!-- Portfolio 1 -->
+          <div class="portfolio_content_description" id="portfolio">
             <div class="portfolio_image">
               <img src="../Assets/img/moderWebsite.png" alt="modern website">
             </div>
@@ -62,13 +62,41 @@
               </div>
             </div>
           </div>
-          <div class="slide">
+          <!-- Portfolio 2 -->
+          <!-- <div class="portfolio_content_description" id="portfolio">
+            <div class="portfolio_image">
+              <img src="../Assets/img/onlineShop.png" alt="modern website">
+            </div>
+            <div class="portfolio_description">
+              <div class="portfolio_description_title">
+                <h1 class="portfolio_description_header">onine shop</h1>
+              </div>
+              <div class="portfolio_description_body">
+                <p>Website adaptable  to all <br> devices, with ui <br> components and animated <br> interactions</p>
+              </div>
+              <div class="portfolio_description_button">
+                <button>Demo</button>
+              </div>
+            </div>
+          </div> -->
+          <!-- <div class="slide">
             <input type="radio" name="" id="radio1">
             <input type="radio" name="" id="radio1" checked>
             <input type="radio" name="" id="radio1">
-          </div>
+          </div> -->
         </div>
         
       </main>
+      <script>
+       var portfolios=document.getElementById('portfolio');
+       var currentPortfolio=0;
+       function showNextPortfolio()
+       {
+        portfolios[currentPortfolio].style.display="none";
+        currentPortfolio=(currentPortfolio+1) % portfolios.length; 
+        portfolio[currentPortfolio].style.display="block";
+       }
+       setInterval(showNextPortfolio,3000)
+      </script>
 </body>
 </html>
