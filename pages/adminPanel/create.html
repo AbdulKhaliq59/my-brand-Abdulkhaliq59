@@ -59,35 +59,23 @@
 
                 <div class="contents">
                     <h2 class="page-title">Manage posts</h2>
-                    <form action="create.html" method="post">
+                    <form action="create.html" method="post" enctype="multipart/form-data">
                         <div>
-                            <label for="Title">Title</label>
-                            <input type="text" name="title" id="blog_title" class="text-input">
+                          <label for="Title">Title</label>
+                          <input type="text" name="title" id="blog_title" class="text-input">
                         </div>
                         <div>
-                            <label for="Title">Date</label>
-                            <input type="Date" name="title" id="blog_Date" class="text-input">
+                          <label for="Title">Description</label>
+                          <textarea name="body" id="body" class="text-input" rows="10" cols="78"></textarea>
                         </div>
                         <div>
-                            <label for="">Topic</label>
-                            <select name="topic" id="selection" class="text-input">
-                                <option value="Poetry" >Web Design</option>
-                                <option value="Life Lesson">Life Lesson</option>
-                                <option value="Poetry">Inspiration</option>
-                            </select>
+                          <label for="Title">Upload Picture</label>
+                          <input type="file" name="picture" id="blog_picture" class="text-input">
                         </div>
                         <div>
-                            <label for="Title">Description</label>
-                            <textarea name="body" id="body" class="blogDescription" rows="10" cols="78"></textarea>
+                          <button type="button" class="btn btn-big" onclick="post()">Add Post</button>
                         </div>
-                        <div>
-                            <label for="Title">Upload Picture</label>
-                            <input type="file" name="title" id="blog_picture" class="text-input">
-                        </div>
-                        <div>
-                            <button type="button" class="btn btn-big" onclick="post()"> Add Post</button>
-                        </div>
-                    </form>    
+                      </form>
                 </div>
             </div>
         </div>
@@ -95,39 +83,62 @@
      <script src="https://cdn.ckeditor.com/ckeditor5/35.3.2/classic/ckeditor.js"></script>
      <script src="./js/script.js"></script>
      <script>
-        let blogData=[];
-        function post(e)
-        {
-            const blogTitle= document.getElementById('blog_title');
-            const blogDate= document.getElementById('blog_Date').value;
-            const blogDescription=document.getElementById('body').value
-            const blogType= document.getElementById('selection')
-            const blogPicture=document.getElementById('blog_picture').files[0].name;
-            console.log(blogPicture);
-            var dateEntered= new Date(blogDate);
-            var options={
-                year:'numeric',
-                month:'2-digit',
-                day:'2-digit'
-            }
-            var formattedDate= dateEntered.toLocaleDateString('en-US',options);
-            console.log(formattedDate);
+     async function post() {
+  const title = document.querySelector('#blog_title').value;
+  const body = document.querySelector('#body').value;
+  const picture = document.querySelector('#blog_picture').files[0];
+
+  const formData = new FormData();
+  formData.append('title', title);
+  formData.append('description', body);
+  formData.append('imageUrl', picture);
+
+  const response = await fetch('https://capstone-backend-mzjj.onrender.com/posts', {
+    method: 'POST',
+    body: formData,
+    headers:{
+      'Content-Type':'multipart/form-data',
+    }
+  });
+console.log(response);
+  const data = await response.json();
+  console.log(data);
+}
+
+
+        // let blogData=[];
+        // function post(e)
+        // {
+        //     const blogTitle= document.getElementById('blog_title');
+        //     const blogDate= document.getElementById('blog_Date').value;
+        //     const blogDescription=document.getElementById('body').value
+        //     const blogType= document.getElementById('selection')
+        //     const blogPicture=document.getElementById('blog_picture').files[0].name;
+        //     console.log(blogPicture);
+        //     var dateEntered= new Date(blogDate);
+        //     var options={
+        //         year:'numeric',
+        //         month:'2-digit',
+        //         day:'2-digit'
+        //     }
+        //     var formattedDate= dateEntered.toLocaleDateString('en-US',options);
+        //     console.log(formattedDate);
             
-            let blogDetails={
-            blogTitle:blogTitle.value,
-            blogDate:formattedDate,
-            blogDescription:blogDescription,
-            blogType:blogType.value,
-            blogPicture:blogPicture
-        }
-            blogData.push(blogDetails);
-            console.log(blogData);
-            localStorage.setItem("blogData",JSON.stringify(blogData));
-            alert("Data Sent successfully");
-            blogTitle.value=""
-            blogDescription.value=""
+        //     let blogDetails={
+        //     blogTitle:blogTitle.value,
+        //     blogDate:formattedDate,
+        //     blogDescription:blogDescription,
+        //     blogType:blogType.value,
+        //     blogPicture:blogPicture
+        // }
+        //     blogData.push(blogDetails);
+        //     console.log(blogData);
+        //     localStorage.setItem("blogData",JSON.stringify(blogData));
+        //     alert("Data Sent successfully");
+        //     blogTitle.value=""
+        //     blogDescription.value=""
             
-        }
+        // }
         
      </script>
 </body>

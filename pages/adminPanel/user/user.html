@@ -29,7 +29,7 @@
                             <div class="dropdown">
                                 <i class="fa-sharp fa-solid fa-caret-down"></i>
                             <div class="dropdown-content">
-                                <a href="../Profile/profile.html">Profile</a>
+                                <a href="../Profile/profile.html">settings</a>
                                 <a href="../../../index.html">Logout</a>
                             </div>
                             </div>
@@ -62,65 +62,78 @@
                 <div class="contents" id="contents">
                     <h2 class="page-title" id="page-title">Manage User</h2>
                     <table id="tableBody">
-                        <!-- <div id="tableBody">
-
-                        </div> -->
-                        <!-- <thead>
-                            <th>SN</th>
-                            <th>username</th>
-                            <th>Password</th>
-                            <th colspan="3">Actions</th>
-                        </thead> -->
-                        <!-- <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Test@gmail.com</td>
-                                <td>12345</td>
-                                <td><a href="" class="edit">Edit</a></td>
-                                <td><a href="" class="delete">Delete</a></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Test@gmail  .com</td>
-                                <td>12345</td>
-                                <td><a href="" class="edit">Edit</a></td>
-                                <td><a href="" class="delete">Delete</a></td>
-                            </tr>
-                        </tbody> -->
                     </table>
                 </div>
             </div>
         </div>
      <script src="https://kit.fontawesome.com/4d8e21eecf.js" crossorigin="anonymous"></script>
      <script>
-        
-        let userDetails= JSON.parse(localStorage.getItem('userDetails'));
-        console.log(userDetails);
-        let table=`<thead>
-                            <th>SN</th>
-                            <th>email</th>
-                            <th>Password</th>
-                            <th colspan="3">Actions</th>
-                    </thead>`;
-        let tbody=`<tbody>`
-            for(let i=0; i<userDetails.length;i++)
-            {
-                table=table+`<tr>
-                    <td>${i+1}</td>
-                    <td>${userDetails[i].email}</td>
-                    <td>${userDetails[i].password}</td>
-                    <td><a href="" class="delete" onClick="deleteUser(${i})">Delete</a></td>
-                    </tr>`
-            }
-            table=table+`</tbody>
-            </table>`;
-            document.getElementById('tableBody').innerHTML=table;
-            function deleteUser(index)
-            {
-             userDetails.splice(index,1);
-             localStorage.setItem("userDetails",JSON.stringify(userDetails));
-             document.getElementById('tableBody').innerHTML=table;
-            }
+        //Integration
+        async function table() {
+      const token = localStorage.getItem("auth-token");
+      console.log(token)
+      const response = await fetch("https://capstone-backend-mzjj.onrender.com/users",{
+        headers:{
+            Authorization: `Bearer ${token}`
+        }
+      });
+      const data = await response.json();
+    console.log(data)
+      let tableData = "";
+      for (let i = 0; i < data.length; i++) {
+      const item = data[i];
+      tableData += `<tr><td>${i + 1}</td><td>${item.username}</td><td>${item.phoneNumber}</td><td><a href="" class="edit">Edit</a></td></tr>`;
+      }
+
+    
+      document.getElementById("tableBody").innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${tableData}
+          </tbody>
+        </table>
+      `;
+    }
+    window.onload = table;
+
+
+
+
+        // let userDetails= JSON.parse(localStorage.getItem('userDetails'));
+        // console.log(userDetails);
+        // let table=`<thead>
+        //                     <th>SN</th>
+        //                     <th>email</th>
+        //                     <th>Password</th>
+        //                     <th colspan="3">Actions</th>
+        //             </thead>`;
+        // let tbody=`<tbody>`
+        //     for(let i=0; i<userDetails.length;i++)
+        //     {
+        //         table=table+`<tr>
+        //             <td>${i+1}</td>
+        //             <td>${userDetails[i].email}</td>
+        //             <td>${userDetails[i].password}</td>
+        //             <td><a href="" class="delete" onClick="deleteUser(${i})">Delete</a></td>
+        //             </tr>`
+        //     }
+        //     table=table+`</tbody>
+        //     </table>`;
+        //     document.getElementById('tableBody').innerHTML=table;
+        //     function deleteUser(index)
+        //     {
+        //      userDetails.splice(index,1);
+        //      localStorage.setItem("userDetails",JSON.stringify(userDetails));
+        //      document.getElementById('tableBody').innerHTML=table;
+        //     }
      </script>
 </body>
 </html>

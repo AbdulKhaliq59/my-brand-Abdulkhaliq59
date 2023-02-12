@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../../../Assets/style.css">
     <link rel="stylesheet" href="../adminstyle.css">
     <link rel="stylesheet" href="./Messagestyle.css">
-    <title>Admin Panel | customer message</title>
+    <title>Admin Panel | Feedback</title>
 </head>
 <body>
     <header class="header">
@@ -29,7 +29,7 @@
                             <div class="dropdown">
                                 <i class="fa-sharp fa-solid fa-caret-down"></i>
                             <div class="dropdown-content">
-                                <a href="">Profile</a>
+                                <a href="">settings</a>
                                 <a href="../../../index.html">Logout</a>
                             </div>
                             </div>
@@ -55,8 +55,6 @@
             <!-- Admin content -->
             <div class="admin-content">
                 <div class="button-group">
-                    <!-- <a href="create.html" class="btn btn-big">Add post</a> 
-                    <a href="index.html" class="btn btn-big">Manage</a>  -->
                 </div>
 
                 <div class="contents" id="contents">
@@ -86,51 +84,43 @@
                 </div>
             </div>
         </div>
-
-
      <script src="https://kit.fontawesome.com/4d8e21eecf.js" crossorigin="anonymous"></script>
-     <script>
-        let table=`
-                    <table>
-                        <thead>
-                            <th>SN</th>
-                            <th>Email</th>
-                            <th>FullName</th>
-                            <th>Message</th>
-                            <th colspan="3">Actions</th>
-                        </thead>
-                    `
-                    ;
-        let Data=localStorage.getItem('contactUs');
-        console.log(Data);
-        if(Data)
-        { 
-            contactUsDetail=JSON.parse(Data);
+    <script>
+    async function table() {
+      const token = localStorage.getItem("auth-token");
+      console.log(token)
+      const response = await fetch("https://capstone-backend-mzjj.onrender.com/contact",{
+        headers:{
+            Authorization: `Bearer ${token}`
         }
-        console.log(Data);
-        //  console.log(contactUs[0].fullName);
-            let tbody=`<tbody>`
-                for( let i=0;i<contactUsDetail.length;i++)
-                {
-                    table=table+`<tr>
-                     <td>${i+1}</td>
-                     <td>${contactUsDetail[i].fullName}</td>
-                     <td>${contactUsDetail[i].email}</td>
-                     <td>${contactUsDetail[i].textArea}</td>
-                     <td><a href="" class="edit" onClick="reply(${i})">Reply</a></td>
-                     <td><a href="" class="delete" onClick="deleteMessage(${i})">Delete</a></td>
-                     </tr>`
-                }
-                table=table+`</tbody>
-                </table>`;
-                document.getElementById('tableBody').innerHTML=table;
-                function deleteMessage(index)
-                {
-                 contactUsDetail.splice(index,1);
-                 localStorage.setItem("contactUs",JSON.stringify(contactUsDetail));
-                 document.getElementById('tableBody').innerHTML=table;
-                }
-        
-     </script>
+      });
+      const data = await response.json();
+    console.log(data)
+      let tableData = "";
+      for (let i = 0; i < data.length; i++) {
+      const item = data[i];
+      tableData += `<tr><td>${i + 1}</td><td>${item.fullName}</td><td>${item.email}</td><td>${item.content}</td><td><a href="" class="edit">Reply</a></td></tr>`;
+      }
+
+    
+      document.getElementById("tableBody").innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Message</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${tableData}
+          </tbody>
+        </table>
+      `;
+    }
+    window.onload = table;
+    </script>
 </body>
 </html>

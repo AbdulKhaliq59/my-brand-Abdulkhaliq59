@@ -88,22 +88,88 @@
       </div>
     </main>
     <script>
-      let contactUs = [];
-      function send() {
-        const fullName = document.getElementById("fullName");
-        const email = document.getElementById("email");
-        const textArea = document.getElementById("textarea");
-        let contactData = {
-          fullName: fullName.value,
-          email: email.value,
-          textArea: textArea.value,
+      // let contactUs = [];
+      // function send() {
+      //   const fullName = document.getElementById("fullName");
+      //   const email = document.getElementById("email");
+      //   const textArea = document.getElementById("textarea");
+      //   let contactData = {
+      //     fullName: fullName.value,
+      //     email: email.value,
+      //     textArea: textArea.value,
+      //   };
+      //   contactUs.push(contactData);
+      //   setContactData();
+      // }
+      // function setContactData() {
+      //   localStorage.setItem("contactUs", JSON.stringify(contactUs));
+      //   alert("Your feedback sent successfully");
+      // }
+
+      /*
+      const form = document.getElementById("create-article-form");
+const title = document.getElementById("title");
+const description = document.getElementById("description");
+const blogBody = document.getElementById("articleBody");
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  console.log(title.value, description.value, blogBody.value);
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGMyN2QyODZiMGM4MzZhNzc5ODU3MiIsImlhdCI6MTY3NTc2NTU1NiwiZXhwIjoxNjc1ODUxOTU2fQ.lzJWBpnuH1lKc7LrQSgsUVPV2_u6iAueAx8iv89bTpE";
+  const url = "https://shumbusho-emile.onrender.com/blogs/createBlog";
+  const body = {
+    title: title.value,
+    description: description.value,
+    blogBody: blogBody.value,
+    imageUrl:
+      "https://imgs.search.brave.com/0Phbn0ycrNwDONqWQGJv_lNJc-8it55i87fHfmc2Zy0/rs:fit:1200:1200:1/g:ce/aHR0cDovL3d3dy5z/bnV0LmZyL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDE1LzA4L2lt/YWdlLWRlLXBheXNh/Z2UuanBn",
+  };
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(body),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data.message);
+    })
+    .catch((error) => {
+      console.error("There was a problem with the fetch operation:", error);
+    });
+});
+      
+      */
+      //Integration to the backend
+
+      async function send() {
+        const fullName = document.getElementById("fullName").value;
+        const email = document.getElementById("email").value;
+        const content = document.getElementById("textarea").value;
+
+        const data = { fullName, email, content };
+        console.log(data);
+        const options = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
         };
-        contactUs.push(contactData);
-        setContactData();
-      }
-      function setContactData() {
-        localStorage.setItem("contactUs", JSON.stringify(contactUs));
-        alert("Your feedback sent successfully");
+
+        const response = await fetch(
+          "https://capstone-backend-mzjj.onrender.com/contact",
+          options
+        );
+        const result = await response.json();
+        console.log(result);
+        if (response.ok) {
+          console.log(result);
+          alert("Your message has been sent successfully!");
+        } else {
+          console.error(result);
+          alert("An error occurred. Please try again later.");
+        }
       }
     </script>
   </body>
