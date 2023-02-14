@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="../Assets/img/Logo.png" type="image/png" />
     <link rel="stylesheet" href="../Assets/style.css" />
+    <link rel="stylesheet" href="../Assets/popup.css" />
     <title>Sign Up</title>
   </head>
   <body>
@@ -27,7 +28,7 @@
               <li><a href="../index.html" class="active">home</a></li>
               <li><a href="./About.html">about</a></li>
               <li><a href="./Portfolio.html">portfolio</a></li>
-              <li><a href="./blog.html">Blog</a></li>
+              <li><a href="./Allblogs.html">Blog</a></li>
               <li><a href="./contact.html">contact</a></li>
               <li>
                 <button class="nav_login">
@@ -39,7 +40,13 @@
         </div>
       </div>
     </header>
-
+    <!-- POP UP SECTION -->
+    <div class="popup" id="popup">
+      <img src="../Assets/img/404-tick.png" id="popupImage" alt="" />
+      <h2 id="popupMessage">Thank you!</h2>
+      <p id="popupGreatMessage">Successfully registered</p>
+      <button type="button" onclick="closePopup()">Ok</button>
+    </div>
     <!-- =============== Body =============== -->
     <main class="main_login">
       <div class="login_icon" id="signup_icon">
@@ -96,6 +103,14 @@
     </main>
     <script src="./signupScript.js"></script>
     <script>
+      let popup = document.getElementById("popup");
+      function openPopup() {
+        popup.classList.add("open-popup");
+      }
+
+      function closePopup() {
+        popup.classList.remove("open-popup");
+      }
       const signupForm = document.querySelector(".login_form");
       const emailInput = document.querySelector("#email");
       const passwordInput = document.querySelector("#password");
@@ -112,7 +127,11 @@
           phoneNumberInput.value == "" ||
           genderSelect.value == ""
         ) {
-          alert("Please fill in all required fields");
+          document.getElementById("popupImage").src = "../Assets/img/error.jpg";
+          document.getElementById("popupMessage").innerHTML = "Error!";
+          document.getElementById("popupGreatMessage").innerHTML =
+            "Please fill all form ";
+          openPopup();
           return true;
         } else {
           return false;
@@ -121,7 +140,11 @@
 
       function isPasswordMatch() {
         if (passwordInput.value !== confirmedPasswordInput.value) {
-          alert("Passwords do not match");
+          document.getElementById("popupImage").src = "../Assets/img/error.jpg";
+          document.getElementById("popupMessage").innerHTML = "Error!";
+          document.getElementById("popupGreatMessage").innerHTML =
+            "password does'nt match ";
+          openPopup();
           return false;
         } else {
           return true;
@@ -153,8 +176,12 @@
             }
           );
           const result = await response.json();
-          console.log(result.message);
-          alert(result.message);
+          document.getElementById("popupImage").src = "../Assets/img/error.jpg";
+          document.getElementById("popupMessage").innerHTML = "Error!";
+          document.getElementById(
+            "popupGreatMessage"
+          ).innerHTML = `${result.message}`;
+          openPopup();
         }
       }
 

@@ -448,9 +448,7 @@ p {
   box-sizing: border-box;
   border-radius: 10px;
 }
-.login_form input[type="date"]
-{
-
+.login_form input[type="date"] {
 }
 .login_form select {
   width: 100%;
@@ -460,7 +458,6 @@ p {
   border: 1px solid #ccc;
   box-sizing: border-box;
   border-radius: 10px;
-  
 }
 .login_button {
   background-color: #0466c8;
@@ -735,6 +732,7 @@ p {
   box-sizing: border-box;
   border-radius: 10px;
 }
+
 #textarea {
   border-radius: 10px;
   width: 90%;
@@ -1060,4 +1058,121 @@ p {
     padding: 20px;
   }
 }
-/*  */
+
+/* Style for blog.html */
+#single-blog {
+  padding: 50px 0;
+  background-color: #f8f8f8;
+}
+
+.single-blog-heading {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.single-blog-heading h3 {
+  font-weight: bold;
+  font-size: 36px;
+  color: #333;
+}
+
+.single-blog-heading span {
+  display: block;
+  font-size: 18px;
+  color: #999;
+  margin-top: 10px;
+}
+
+/* Single Blog container */
+.single-blog-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+/* image */
+#blog-img {
+  width: 500px;
+  height: 500px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Text */
+.single-blog-text {
+  width: 50%;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.single-blog-text p {
+  font-size: 18px;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Comments section */
+.comments-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+#comments-container {
+  width: 80%;
+  border: 1px solid #0466c8;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Single Comment */
+.single-comment {
+  margin-bottom: 20px;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.add-comment {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+#comment-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comments-section input[type="submit"] {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background-color: #0466c8;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.comments-section input[type="submit"]:hover {
+  background-color: #fff;
+  color: #0466c8;
+}
+
+/* 
+
+ */

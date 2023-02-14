@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="../Assets/img/Logo.png" type="image/png" />
     <link rel="stylesheet" href="../Assets/style.css" />
+    <link rel="stylesheet" href="../Assets/popup.css" />
     <title>Login</title>
   </head>
   <body>
@@ -27,7 +28,7 @@
               <li><a href="../index.html" class="active">home</a></li>
               <li><a href="./About.html">about</a></li>
               <li><a href="./Portfolio.html">portfolio</a></li>
-              <li><a href="./blog.html">Blog</a></li>
+              <li><a href="./Allblogs.html">Blog</a></li>
               <li><a href="./contact.html">contact</a></li>
               <li>
                 <button class="nav_login">
@@ -39,7 +40,13 @@
         </div>
       </div>
     </header>
-
+    <!-- POP UP SECTION -->
+    <div class="popup" id="popup">
+      <img src="../Assets/img/404-tick.png" id="popupImage" alt="" />
+      <h2 id="popupMessage">Thank you!</h2>
+      <p id="popupGreatMessage">Successfully logged in</p>
+      <button type="button" onclick="closePopup()">Ok</button>
+    </div>
     <!-- =============== Body =============== -->
     <main class="main_login">
       <div class="login_icon">
@@ -55,7 +62,11 @@
             placeholder="Enter your username or email"
             id="email"
           /><br />
-          <input type="password" placeholder="Enter your password" id="password" />
+          <input
+            type="password"
+            placeholder="Enter your password"
+            id="password"
+          />
           <button class="login_button" type="button" onclick="login(this)">
             login
           </button>
@@ -72,6 +83,20 @@
       </div>
     </main>
     <script>
+      let popup = document.getElementById("popup");
+      function openPopup() {
+        popup.classList.add("open-popup");
+      }
+
+      function closePopup() {
+        popup.classList.remove("open-popup");
+        clear();
+      }
+
+      function clear() {
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
+      }
       async function login() {
         try {
           const username = document.getElementById("email").value;
@@ -87,15 +112,26 @@
             }
           );
           const data = await response.json();
-          alert(data.message);
-          console.log(data);
           if (data.data) {
-            window.location.href = "/pages/adminPanel/index.html";
+            setTimeout(() => {
+              window.location.href = "/pages/adminPanel/index.html";
+            }, 5000);
+            openPopup();
+
             localStorage.setItem("auth-token", data.data);
           } else {
-            alert("Enter true credenitals");
+            document.getElementById("popupImage").src =
+              "../Assets/img/error.jpg";
+            document.getElementById("popupMessage").innerHTML = "Error!";
+            document.getElementById("popupGreatMessage").innerHTML =
+              "Please check your credentials";
+            openPopup();
           }
         } catch (error) {
+          document.getElementById("popupImage").src = "../Assets/img/error.jpg";
+          document.getElementById("popupMessage").innerHTML = "Error!";
+          document.getElementById("popupGreatMessage").innerHTML = `${error}`;
+          openPopup();
           console.log(error);
         }
       }

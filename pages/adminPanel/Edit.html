@@ -59,70 +59,73 @@
                 <div class="contents">
                     <h2 class="page-title">Edit posts</h2>
                     <div id="form">
-
-                    </div>
+                        <form action="create.html" method="post" enctype="multipart/form-data">
+                          <div>
+                            <label for="Title">Title</label>
+                            <input type="text" name="title" id="blog_title" class="text-input">
+                          </div>
+                          <div>
+                            <label for="Title">Description</label>
+                            <textarea name="body" id="body" class="text-input" rows="10" cols="78"></textarea>
+                          </div>
+                          <div>
+                            <label for="Title">Upload Picture</label>
+                            <input type="file" name="picture" id="blog_picture" class="text-input">
+                          </div>
+                          <div>
+                            <button type="button" class="btn btn-big" onclick="post()">update Post</button>
+                          </div>
+                        </form>
+                      </div>                      
                 </div>
             </div>
         </div>
         <script>
-                let index=localStorage.getItem('blogDataIndex');
-                let blogData=JSON.parse(localStorage.getItem('blogData'));
-                    let editForm=`
-                    <form action="create.html" method="post">
-                        <div>
-                            <label for="Title">Title</label>
-                            <input type="text" name="title" id="newblog_title" class="text-input" value="${blogData[index].blogTitle}">
-                        </div>
-                        <div>
-                            <label for="Title">Date</label>
-                            <input type="Date" name="title" id="newblog_Date" class="text-input" value="">
-                        </div>
-                        <div>
-                            <label for="">Topic</label>
-                            <select name="topic" id="Newselection" class="text-input">
-                                <option value="Poetry" >Web Design</option>
-                                <option value="Life Lesson">Life Lesson</option>
-                                <option value="Poetry">Inspiration</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="Title">Description</label>
-                            <textarea name="body" id="newbody" class="blogDescription" rows="10" cols="78" value="${blogData[index].blogDescription}"></textarea>
-                        </div>
-                        <div>
-                            <label for="Title">Upload Picture</label>
-                            <input type="file" name="title" id="newblog_picture" class="text-input" value="${blogData[index].blogPicture}">
-                        </div>
-                        <div>
-                            <button type="button" class="btn btn-big" onclick="update(${index})"> Update Post</button>
-                        </div>
-                    </form>`;
-                    document.getElementById('form').innerHTML=editForm;
-                function update(index)
-                {
-                    let newblog_title= document.getElementById('newblog_title');
-                    let newblogDescription=document.getElementById('newbody');
-                    // let newBlogType=document.getElementById('newselection').value;
-                    let newDate=document.getElementById('newblog_date');
-                    var newDateEntered= new Date(newDate);
-                    var newBlogPicture=document.getElementById('newblog_picture').files[0].name;
-                    console.log(newBlogPicture)
-                    var options={
-                        year:'numeric',
-                        month:'2-digit',
-                        day:'2-digit'
-                    }
-                    var newBlogDate=newDateEntered.toLocaleDateString('en-US',options);
-                    blogData[index]={
-                        blogTitle: newblog_title.value,
-                        blogDate:newBlogDate,
-                        blogPicture:newBlogPicture
-                    }
-                    localStorage.setItem("blogData",JSON.stringify(blogData));
-                    console.log(blogData)
-                    alert("Your data updated Successfully");
-                    window.location.href="index.html";
-                }
+            const postId= localStorage.getItem('selectedPostId');
+            console.log(postId);
+            const token= localStorage.getItem('auth-token');
+            if(!token){
+                throw new Error('No Token provided');
+            }
+            fetch(`https://capstone-backend-mzjj.onrender.com/posts/${encodeURIComponent(postId)}`,{
+                headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json",
+                    }, 
+            }).then(response=>{
+                console.log(response);
+                return response.json()
+            }).then(data=>{
+                console.log(data);
+                document.querySelector('#blog_title').value=data.data.title;
+                document.querySelector('#body').value=data.data.description;
+            });
+            const post=async()=>{
+                if(!token){
+                throw new Error('No Token provided');
+            }
+                console.log(token);
+                const title = document.querySelector('#blog_title').value;
+                const body = document.querySelector('#body').value;
+                const picture = document.querySelector('#blog_picture').files[0];
+
+                const formData = new FormData();
+                formData.append('title', title);
+                formData.append('description', body);
+                formData.append('imageUrl', picture);
+                let postId=localStorage.getItem('selectedPostId');
+                console.log(postId)
+                const response = await fetch(`https://capstone-backend-mzjj.onrender.com/posts/${postId}`, {
+                    method: 'PATCH',
+                    headers:{
+                      "Authorization":`Bearer ${token}`,
+                        },
+                    body: formData,
+                });
+                console.log(response);
+                const data = await response.json();
+                console.log(data);
+                }                
         </script>
         </body>
         </html>            
