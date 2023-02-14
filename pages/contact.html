@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="../Assets/img/Logo.png" type="image/png" />
     <link rel="stylesheet" href="../Assets/style.css" />
+    <link rel="stylesheet" href="../Assets/popup.css" />
     <title>Contact</title>
   </head>
   <body>
@@ -27,7 +28,7 @@
               <li><a href="../index.html" class="active">home</a></li>
               <li><a href="./About.html">about</a></li>
               <li><a href="./Portfolio.html">portfolio</a></li>
-              <li><a href="./blog.html">Blog</a></li>
+              <li><a href="./Allblogs.html">Blog</a></li>
               <li><a href="./contact.html">contact</a></li>
               <li>
                 <button class="nav_login">
@@ -39,6 +40,13 @@
         </div>
       </div>
     </header>
+    <!-- POP UP SECTION -->
+    <div class="popup" id="popup">
+      <img src="../Assets/img/404-tick.png" id="popupImage" alt="" />
+      <h2 id="popupMessage">Thank you!</h2>
+      <p id="popupGreatMessage">Successfully Sent</p>
+      <button type="button" onclick="closePopup()">Ok</button>
+    </div>
     <!-- ===========  MAIN  ========= -->
     <main class="main_contact">
       <div class="contact_container">
@@ -88,67 +96,24 @@
       </div>
     </main>
     <script>
-      // let contactUs = [];
-      // function send() {
-      //   const fullName = document.getElementById("fullName");
-      //   const email = document.getElementById("email");
-      //   const textArea = document.getElementById("textarea");
-      //   let contactData = {
-      //     fullName: fullName.value,
-      //     email: email.value,
-      //     textArea: textArea.value,
-      //   };
-      //   contactUs.push(contactData);
-      //   setContactData();
-      // }
-      // function setContactData() {
-      //   localStorage.setItem("contactUs", JSON.stringify(contactUs));
-      //   alert("Your feedback sent successfully");
-      // }
+      let popup = document.getElementById("popup");
+      function openPopup() {
+        popup.classList.add("open-popup");
+      }
 
-      /*
-      const form = document.getElementById("create-article-form");
-const title = document.getElementById("title");
-const description = document.getElementById("description");
-const blogBody = document.getElementById("articleBody");
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  console.log(title.value, description.value, blogBody.value);
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGMyN2QyODZiMGM4MzZhNzc5ODU3MiIsImlhdCI6MTY3NTc2NTU1NiwiZXhwIjoxNjc1ODUxOTU2fQ.lzJWBpnuH1lKc7LrQSgsUVPV2_u6iAueAx8iv89bTpE";
-  const url = "https://shumbusho-emile.onrender.com/blogs/createBlog";
-  const body = {
-    title: title.value,
-    description: description.value,
-    blogBody: blogBody.value,
-    imageUrl:
-      "https://imgs.search.brave.com/0Phbn0ycrNwDONqWQGJv_lNJc-8it55i87fHfmc2Zy0/rs:fit:1200:1200:1/g:ce/aHR0cDovL3d3dy5z/bnV0LmZyL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDE1LzA4L2lt/YWdlLWRlLXBheXNh/Z2UuanBn",
-  };
-  fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(body),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data.message);
-    })
-    .catch((error) => {
-      console.error("There was a problem with the fetch operation:", error);
-    });
-});
-      
-      */
+      function closePopup() {
+        popup.classList.remove("open-popup");
+      }
+      const fullName = document.getElementById("fullName").value;
+      const email = document.getElementById("email").value;
+      const content = document.getElementById("textarea").value;
       //Integration to the backend
-
+      function clear() {
+        fullName.value = "";
+        email.value = "";
+        content.value = "";
+      }
       async function send() {
-        const fullName = document.getElementById("fullName").value;
-        const email = document.getElementById("email").value;
-        const content = document.getElementById("textarea").value;
-
         const data = { fullName, email, content };
         console.log(data);
         const options = {
@@ -165,10 +130,16 @@ form.addEventListener("submit", async (event) => {
         console.log(result);
         if (response.ok) {
           console.log(result);
-          alert("Your message has been sent successfully!");
+          openPopup();
+          clear();
         } else {
           console.error(result);
-          alert("An error occurred. Please try again later.");
+          document.getElementById("popupMessage").innerHTML = "Error!";
+          document.getElementById(
+            "popupGreatMessage"
+          ).innerHTML = `${result.error}`;
+          openPopup();
+          clear();
         }
       }
     </script>

@@ -92,54 +92,24 @@
   formData.append('title', title);
   formData.append('description', body);
   formData.append('imageUrl', picture);
+  
+  const token = localStorage.getItem('auth-token');
+  if (!token) {
+    throw new Error('No token provided');
+  }
 
   const response = await fetch('https://capstone-backend-mzjj.onrender.com/posts', {
     method: 'POST',
-    body: formData,
     headers:{
-      'Content-Type':'multipart/form-data',
-    }
+      "Authorization":`Bearer ${token}`,
+    },
+    body: formData,
   });
-console.log(response);
+
   const data = await response.json();
   console.log(data);
-}
-
-
-        // let blogData=[];
-        // function post(e)
-        // {
-        //     const blogTitle= document.getElementById('blog_title');
-        //     const blogDate= document.getElementById('blog_Date').value;
-        //     const blogDescription=document.getElementById('body').value
-        //     const blogType= document.getElementById('selection')
-        //     const blogPicture=document.getElementById('blog_picture').files[0].name;
-        //     console.log(blogPicture);
-        //     var dateEntered= new Date(blogDate);
-        //     var options={
-        //         year:'numeric',
-        //         month:'2-digit',
-        //         day:'2-digit'
-        //     }
-        //     var formattedDate= dateEntered.toLocaleDateString('en-US',options);
-        //     console.log(formattedDate);
-            
-        //     let blogDetails={
-        //     blogTitle:blogTitle.value,
-        //     blogDate:formattedDate,
-        //     blogDescription:blogDescription,
-        //     blogType:blogType.value,
-        //     blogPicture:blogPicture
-        // }
-        //     blogData.push(blogDetails);
-        //     console.log(blogData);
-        //     localStorage.setItem("blogData",JSON.stringify(blogData));
-        //     alert("Data Sent successfully");
-        //     blogTitle.value=""
-        //     blogDescription.value=""
-            
-        // }
-        
+  alert(data.message);
+} 
      </script>
 </body>
 </html>

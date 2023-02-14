@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link rel="icon" href="../Assets/img/Logo.png" type="image/png" />
+    <link rel="stylesheet" href="../Assets/style.css" />
+    <title>Blog</title>
+  </head>
+  <body>
+    <!-- ============  HEADER ========== -->
+    <header class="header">
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <div class="logo">
+            <a href="../index.html"
+              ><img src="../Assets/img/Logo.png" alt=""
+            /></a>
+          </div>
+          <input type="checkbox" id="nav-check" />
+          <label for="nav-check" class="nav-toggler">
+            <span></span>
+          </label>
+          <nav class="nav">
+            <ul>
+              <li><a href="../index.html" class="active">home</a></li>
+              <li><a href="./About.html">about</a></li>
+              <li><a href="./Portfolio.html">portfolio</a></li>
+              <li><a href="./Allblogs.html">Blog</a></li>
+              <li><a href="./contact.html">contact</a></li>
+              <li>
+                <button class="nav_login">
+                  <a href="./login.html" id="nav_login_name">Login</a>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============= MAIN ============== -->
+    <section id="blog">
+      <!-- Heading -->
+      <div class="blog-heading">
+        <h3>My Blogs</h3>
+        <span>My recent Post</span>
+      </div>
+      <!-- =====blog-container====== -->
+      <!-- Blog 1 -->
+      <div class="blog-container">
+        <!-- Blog box 4 -->
+        <div class="blog-box">
+          <div id="blogads"></div>
+        </div>
+      </div>
+    </section>
+    <script>
+      fetch("https://capstone-backend-mzjj.onrender.com/posts")
+        .then((response) => response.json())
+        .then((posts) => {
+          console.log(posts);
+          let html = "";
+          for (const post of posts) {
+            html += `
+        <div class="blog-box">
+          <!-- image -->
+          <div class="blog-img">
+            <img src="${post.imageUrl}" alt="${post.title}" />
+          </div>
+          <!-- Text -->
+          <div class="blog-text">
+            <span>${formatDate(post.date)}</span>
+            <a href="#" class="blog_link">${post.title}</a>
+            <p>${post.description}</p>
+            <button class="btn_readmore"><a href="#" onclick="view('${
+              post._id
+            }')">Read More</a></button>
+          </div>
+        </div>`;
+          }
+          document.querySelector(".blog-container").innerHTML = html;
+        });
+      function formatDate(dateString) {
+        let date = new Date(dateString);
+        return date.toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        });
+      }
+      function view(id) {
+        localStorage.setItem("keyToRead", id);
+        window.location.href = "blog.html";
+      }
+    </script>
+  </body>
+</html>
