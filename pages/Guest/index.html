@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../../Assets/img/Logo.png" type="image/png">
     <link rel="stylesheet" href="../../Assets/style.css">
-    <link rel="stylesheet" href="adminstyle.css">
-    <title>Admin Panel</title>
+    <link rel="stylesheet" href="../adminPanel/adminstyle.css">
+    <title>Dashboard | Guest</title>
 </head>
 <body>
     <header class="header">
@@ -29,7 +29,7 @@
                                 <i class="fa-sharp fa-solid fa-caret-down"></i>
                             <div class="dropdown-content">
                                 <a href="./Profile/profile.html">settings</a>
-                                <a href="../../index.html">Logout</a>
+                                <a href="./home.html">Exit</a>
                             </div>
                             </div>
                         </div>
@@ -46,22 +46,16 @@
             <div class="left-sidebar">
                 <ul>
                     <li><a href="index.html">Manage Blog</a></li>
-                    <li><a href="./Message/index.html">Message</a></li>
-                    <li><a href="./Project/project.html">Manage Project</a></li>
-                    <li><a href="./user/user.html">Manage User</a></li>
+                    <li><a href="./Profile/Account.html">Manage Account</a></li>
+                    <li><a href="./home.html">Exit</a></li>                   
                 </ul>
             </div>
             <!-- Admin content -->
             
             <div class="admin-content">
-                <div class="button-group">
-                    <a href="create.html" class="btn btn-big">Add post</a> 
-                    <a href="index.html" class="btn btn-big">Manage</a> 
-                </div>
-                
                 <div class="contents">
                     <div id="form"></div>
-                    <h2 class="page-title" id="page-title">Manage posts</h2>            
+                    <h2 class="page-title" id="page-title">POST LIST</h2>            
                     <table id="tableBody"> 
                     </table>
                     
@@ -76,7 +70,7 @@
         fetch('https://capstone-backend-mzjj.onrender.com/posts')
   .then(response => response.json())
   .then(data => {
-    let output = '<thead><th>Title post</th><th>Date</th><th colspan="3">Actions</th></thead>';
+    let output = '<thead><th>Title post</th><th>Date</th></th></thead>';
     function formatDate(dateString)
     {
         let date= new Date(dateString);
@@ -91,8 +85,6 @@
         <tr>
           <td>${post.title}</td>
           <td>${formatDate(post.date)}</td>
-          <td><a href="#" class="edit" onclick="editPost('${post._id}')">Edit</a></td>
-          <td><a href="#" class="delete" onclick="deletePost('${post._id}')"">Delete</a></td>
         </tr>`;
     });
 

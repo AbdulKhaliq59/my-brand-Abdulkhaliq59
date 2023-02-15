@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../../Assets/img/Logo.png" type="image/png">
+    <link rel="stylesheet" href="../../../Assets/style.css">
+    <link rel="stylesheet" href="../../adminPanel/adminstyle.css">
+    <title>Admin Section | profile </title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+               <div class="logo">
+                 <a href="#"><img src="../../../Assets/img/Logo.png" alt=""></a>
+               </div>
+               <input type="checkbox" id="nav-check">
+               <label for="nav-check" class="nav-toggler">
+                  <span></span>
+               </label>
+               <nav class="nav">
+                  <ul>
+                        <div class="drop">
+                            <li><i class="fa-solid fa-user"></i>
+                            <span class="user_name" id="user_name">Abdoul Khaliq</span>
+                            <div class="dropdown">
+                                <i class="fa-sharp fa-solid fa-caret-down"></i>
+                            <div class="dropdown-content">
+                                <a href="">settings</a>
+                                <a href="../../../index.html">Logout</a>
+                            </div>
+                            </div>
+                        </div>
+                    </li>
+                  </ul>
+               </nav>
+            </div>
+        </div>
+     </header>
+     
+        <!-- PAGE WRAPPER -->
+        <div class="admin-wrapper">
+            <!-- Left side bar -->
+            <div class="left-sidebar">
+                <ul>
+                    <li><a href="../index.html">Manage Blog</a></li>
+                    <li><a href="../Profile/Account.html">Manage Account</a></li>
+                    <li><a href="../home.html">Exit</a></li>
+                </ul>
+            </div>
+            <!-- Admin content -->
+            <div class="admin-content">
+                <div class="button-group">
+                    
+                </div>
+
+                <div class="contents">
+                    <h2 class="page-title">Edit Profile</h2>
+                    <form action="" method="post">
+                        <div>
+                            <label for="Title">User name</label>
+                            <input type="email" name="title" id="username" placeholder="Enter your email" class="text-input" >
+                        </div>
+                        <div>
+                            <label for="Title">Current password</label>
+                            <input type="password" name="title" id="currentPassword" placeholder="Enter Current Password" class="text-input">
+                        </div>
+                        <div>
+                            <label for="Title"> New Password</label>
+                            <input type="password" name="title" id="newPassword" placeholder=" Enter New Password" class="text-input">
+                        </div>
+                        
+                        <div>
+                            <button type="button" class="btn btn-big" onclick="updatePassword()"> Change Password</button>
+                        </div>
+                    </form>    
+                </div>
+            </div>
+        </div>
+     <script src="https://kit.fontawesome.com/4d8e21eecf.js" crossorigin="anonymous"></script>
+     <script>
+        function updatePassword() {
+  const username = document.getElementById('username');
+  const currentPassword = document.getElementById('currentPassword');
+  const newPassword = document.getElementById('newPassword');
+  const token = localStorage.getItem('auth-token');
+
+  fetch('http://localhost:3000/updatePassword', {
+    method: 'POST', // Change to POST
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      username: username.value,
+      currentPassword: currentPassword.value,
+      newPassword: newPassword.value
+    })
+  })
+    .then(response => {
+      console.log(response);
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
+// Get the relevant DOM elements
+// const form = document.querySelector('form');
+// const usernameInput = document.querySelector('#username');
+// const currentPasswordInput = document.querySelector('#currentPassword');
+// const newPasswordInput = document.querySelector('#newPassword');
+
+// Set the username input value to the user's email address
+// usernameInput.value = localStorage.getItem('email');
+
+// Handle form submission
+// form.addEventListener('submit', async (event) => {
+//   event.preventDefault();
+
+  // Get the current and new passwords from the input fields
+//   const currentPassword = currentPasswordInput.value;
+//   const newPassword = newPasswordInput.value;
+
+  // Send a request to the server to update the password
+//   const response = await fetch('http://localhost:3000/updatePassword', {
+//     method: 'PATCH',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       'Auhtorization': `Bearer ${localStorage.getItem('auth-token')}` // Include the authentication token in the request headers
+//     },
+//     body: JSON.stringify({ username: usernameInput.value, currentPassword, newPassword })
+//   });
+
+  // Handle the response
+//   if (response.ok) {
+//     alert('Password updated successfully');
+//   } else {
+//     const error = await response.json();
+//     alert(`Error: ${error.message}`);
+//   }
+// });
+
+     </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../Assets/img/Logo.png" type="image/png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./guest.css" />
+    <title>About</title>
+  </head>
+  <body>
+    <!-- ============ HEADER ========== -->
+    <header class="header">
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <div class="logo">
+            <a href="../index.html"
+              ><img src="../../Assets/img/Logo.png" alt=""
+            /></a>
+          </div>
+          <input type="checkbox" id="nav-check" />
+          <label for="nav-check" class="nav-toggler">
+            <span></span>
+          </label>
+          <nav class="nav">
+            <ul>
+              <li><a href="./home.html" class="active">home</a></li>
+              <li><a href="./About.html">about</a></li>
+              <li><a href="./Portfolio.html">portfolio</a></li>
+              <li><a href="./Allblogs.html">Blog</a></li>
+              <li><a href="./contact.html">contact</a></li>
+              <li class="dropdown">
+                <a class="nav_login" href="#"
+                  >Dashboard <i class="fa fa-caret-down"></i
+                ></a>
+                <div class="dropdown-content">
+                  <a href="./index.html">Dashboard</a>
+                  <a href="../../pages/login.html">Logout</a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="main_about">
+      <div class="about_right">
+        <div class="about_image">
+          <img src="../../Assets/img/about.png" alt="" />
+        </div>
+      </div>
+      <div class="about_left">
+        <h1 class="about_title">About me</h1>
+        <p class="about_description">
+          I am a junior full-stack developer with a strong will to <br />
+          contribute to team success through working in Agile <br />
+          distributed teams (either remotely or on-site). Andela <br />
+          Technical Leadership Program, a program that focuses <br />
+          on Software Engineering, will help me specialize in Full-stack <br />
+          web development.
+        </p>
+        <h1 class="about_title">Skills</h1>
+        <div class="skills_description">
+          <div class="skills_items">
+            <img src="../../Assets/img/js.png" alt="js Logo" />
+            <p class="par_skills_items">Javascript</p>
+          </div>
+          <div class="skills_items">
+            <img src="../../Assets/img/CSS.png" alt="css Logo" />
+            <p class="par_skills_items">CSS</p>
+          </div>
+          <div class="skills_items">
+            <img src="../../Assets/img/HTML.png" alt="css Logo" />
+            <p class="par_skills_items">HTML</p>
+          </div>
+        </div>
+        <div>
+          <button class="btn_readmore"><a href="">Download My CV</a></button>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

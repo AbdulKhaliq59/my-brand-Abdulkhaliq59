@@ -7,8 +7,12 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <link rel="icon" href="../Assets/img/Logo.png" type="image/png" />
-    <link rel="stylesheet" href="../Assets/style.css" />
+    <link rel="icon" href="../../Assets/img/Logo.png" type="image/png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./guest.css" />
     <title>Blog</title>
   </head>
   <body>
@@ -18,7 +22,7 @@
         <div class="row align-items-center justify-content-between">
           <div class="logo">
             <a href="../index.html"
-              ><img src="../Assets/img/Logo.png" alt=""
+              ><img src="../../Assets/img/Logo.png" alt=""
             /></a>
           </div>
           <input type="checkbox" id="nav-check" />
@@ -27,15 +31,19 @@
           </label>
           <nav class="nav">
             <ul>
-              <li><a href="../index.html">home</a></li>
+              <li><a href="./home.html" class="active">home</a></li>
               <li><a href="./About.html">about</a></li>
               <li><a href="./Portfolio.html">portfolio</a></li>
-              <li><a href="./blog.html">Blog</a></li>
+              <li><a href="./Allblogs.html">Blog</a></li>
               <li><a href="./contact.html">contact</a></li>
-              <li>
-                <button class="nav_login">
-                  <a href="./login.html" id="nav_login_name">Login</a>
-                </button>
+              <li class="dropdown">
+                <a class="nav_login" href="#"
+                  >Dashboard <i class="fa fa-caret-down"></i
+                ></a>
+                <div class="dropdown-content">
+                  <a href="./index.html">Dashboard</a>
+                  <a href="../../pages/login.html">Logout</a>
+                </div>
               </li>
             </ul>
           </nav>
@@ -158,7 +166,7 @@
 
             commentsContainer.appendChild(commentDiv);
           });
-          countCommentsSpan.textContent=comments.length;
+          countCommentsSpan.textContent = comments.length;
         })
         .catch((error) => {
           console.error("There was a problem with the fetch operation:", error);

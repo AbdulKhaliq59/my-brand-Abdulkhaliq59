@@ -7,9 +7,12 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <link rel="icon" href="../Assets/img/Logo.png" type="image/png" />
-    <link rel="stylesheet" href="../Assets/style.css" />
-    <link rel="stylesheet" href="../Assets/popup.css" />
+    <link rel="icon" href="../../Assets/img/Logo.png" type="image/png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./guest.css" />
     <title>Blog</title>
   </head>
   <body>
@@ -19,7 +22,7 @@
         <div class="row align-items-center justify-content-between">
           <div class="logo">
             <a href="../index.html"
-              ><img src="../Assets/img/Logo.png" alt=""
+              ><img src="../../Assets/img/Logo.png" alt=""
             /></a>
           </div>
           <input type="checkbox" id="nav-check" />
@@ -28,28 +31,26 @@
           </label>
           <nav class="nav">
             <ul>
-              <li><a href="../index.html" class="active">home</a></li>
+              <li><a href="./home.html" class="active">home</a></li>
               <li><a href="./About.html">about</a></li>
               <li><a href="./Portfolio.html">portfolio</a></li>
               <li><a href="./Allblogs.html">Blog</a></li>
               <li><a href="./contact.html">contact</a></li>
-              <li>
-                <button class="nav_login">
-                  <a href="./login.html" id="nav_login_name">Login</a>
-                </button>
+              <li class="dropdown">
+                <a class="nav_login" href="#"
+                  >Dashboard <i class="fa fa-caret-down"></i
+                ></a>
+                <div class="dropdown-content">
+                  <a href="./index.html">Dashboard</a>
+                  <a href="../../pages/login.html">Logout</a>
+                </div>
               </li>
             </ul>
           </nav>
         </div>
       </div>
     </header>
-    <!-- ============= POPUP ============== -->
-    <div class="popup" id="popup">
-      <img src="../Assets/img/error.jpg" id="popupImage" alt="" />
-      <h2 id="popupMessage">Error!</h2>
-      <p id="popupGreatMessage">First Login</p>
-      <button type="button" onclick="closePopup()">Ok</button>
-    </div>
+
     <!-- ============= MAIN ============== -->
     <section id="blog">
       <!-- Heading -->
@@ -67,16 +68,6 @@
       </div>
     </section>
     <script>
-      let popup = document.getElementById("popup");
-      function openPopup() {
-        popup.classList.add("open-popup");
-      }
-
-      function closePopup() {
-        popup.classList.remove("open-popup");
-        clear();
-      }
-
       fetch("https://capstone-backend-mzjj.onrender.com/posts")
         .then((response) => response.json())
         .then((posts) => {
@@ -94,7 +85,9 @@
             <span>${formatDate(post.date)}</span>
             <a href="#" class="blog_link">${post.title}</a>
             <p>${post.description}</p>
-            <button class="btn_readmore"><a href="#" onclick="view()">Read More</a></button>
+            <button class="btn_readmore"><a href="#" onclick="view('${
+              post._id
+            }')">Read More</a></button>
           </div>
         </div>`;
           }
@@ -108,8 +101,9 @@
           year: "numeric",
         });
       }
-      function view() {
-        openPopup();
+      function view(id) {
+        localStorage.setItem("keyToRead", id);
+        window.location.href = "blog.html";
       }
     </script>
   </body>
