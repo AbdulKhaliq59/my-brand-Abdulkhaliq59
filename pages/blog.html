@@ -91,7 +91,9 @@
       function addComment() {
         const commentText = document.getElementById("commentText").value;
         fetch(
-          `http://localhost:3000/posts/${encodeURIComponent(postId)}/comments`,
+          `https://capstone-backend-mzjj.onrender.com/${encodeURIComponent(
+            postId
+          )}/comments`,
           {
             method: "POST",
             headers: {
@@ -158,7 +160,7 @@
 
             commentsContainer.appendChild(commentDiv);
           });
-          countCommentsSpan.textContent=comments.length;
+          countCommentsSpan.textContent = comments.length;
         })
         .catch((error) => {
           console.error("There was a problem with the fetch operation:", error);
