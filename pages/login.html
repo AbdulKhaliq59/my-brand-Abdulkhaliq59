@@ -97,44 +97,94 @@
         document.getElementById("email").value = "";
         document.getElementById("password").value = "";
       }
+
       async function login() {
         try {
           const username = document.getElementById("email").value;
           const password = document.getElementById("password").value;
-          const response = await fetch(
-            "https://capstone-backend-mzjj.onrender.com/signin",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ username, password }),
-            }
-          );
+          const response = await fetch("https://capstone-backend-mzjj.onrender.com/signin", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+          });
           const data = await response.json();
-          if (data.data) {
-            setTimeout(() => {
-              window.location.href = "/pages/adminPanel/index.html";
-            }, 5000);
-            openPopup();
 
-            localStorage.setItem("auth-token", data.data);
-          } else {
+          if (response.status === 400) {
+            // Display an error message if the user is not found or the password is wrong
             document.getElementById("popupImage").src =
               "../Assets/img/error.jpg";
             document.getElementById("popupMessage").innerHTML = "Error!";
             document.getElementById("popupGreatMessage").innerHTML =
               "Please check your credentials";
             openPopup();
+            return;
+          }
+
+          localStorage.setItem("auth-token", data.data);
+          if (
+            data.isAdmin &&
+            !localStorage.getItem("auth-token") == undefined
+          ) {
+            // Redirect the user to the admin panel if they are an admin
+            setTimeout(() => {
+              openPopup();
+              window.location.href = "/pages/adminPanel/index.html";
+            }, 3000);
+          } else {
+            // Redirect the user to the guest homepage if they are not an admin
+            setTimeout(() => {
+              openPopup();
+              window.location.href = "/pages/Guest/home.html";
+            }, 3000);
           }
         } catch (error) {
           document.getElementById("popupImage").src = "../Assets/img/error.jpg";
           document.getElementById("popupMessage").innerHTML = "Error!";
-          document.getElementById("popupGreatMessage").innerHTML = `${error}`;
+          document.getElementById("popupGreatMessage").innerHTML = ``;
           openPopup();
           console.log(error);
         }
       }
+
+      // async function login() {
+      //   try {
+      //     const username = document.getElementById("email").value;
+      //     const password = document.getElementById("password").value;
+      //     const response = await fetch("http://localhost:3000/signin", {
+      //       method: "POST",
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //       },
+      //       body: JSON.stringify({ username, password }),
+      //     });
+      //     const data = await response.json();
+      //     console.log(data.username);
+      //     if (response.status === 400) {
+      //       document.getElementById("popupImage").src =
+      //         "../Assets/img/error.jpg";
+      //       document.getElementById("popupMessage").innerHTML = "Error!";
+      //       document.getElementById("popupGreatMessage").innerHTML =
+      //         "Please check your credentials";
+      //       openPopup();
+      //     }
+      //     localStorage.setItem("auth-token", data.data);
+      //     if (data.username === "admin@gmail.com") {
+      //       setTimeout(() => {
+      //         window.location.href = "/pages/adminPanel/index.html";
+      //       }, 5000);
+      //       openPopup();
+      //     } else {
+      //       window.location.href = "/pages/Guest/home.html";
+      //     }
+      //   } catch (error) {
+      //     document.getElementById("popupImage").src = "../Assets/img/error.jpg";
+      //     document.getElementById("popupMessage").innerHTML = "Error!";
+      //     document.getElementById("popupGreatMessage").innerHTML = `${error}`;
+      //     openPopup();
+      //   }
+      // }
     </script>
   </body>
 </html>

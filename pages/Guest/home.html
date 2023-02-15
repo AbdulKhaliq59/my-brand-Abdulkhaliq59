@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="icon" href="../../Assets/img/Logo.png" type="image/png" />
+    <link rel="stylesheet" href="./guest.css" />
+    <title>my-brand</title>
+  </head>
+  <body>
+    <!-- ============  HEADER ========== -->
+    <header class="header">
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <div class="logo">
+            <a href="#"><img src="../../Assets/img/Logo.png" alt="" /></a>
+          </div>
+          <input type="checkbox" id="nav-check" />
+          <label for="nav-check" class="nav-toggler">
+            <span></span>
+          </label>
+          <nav class="nav">
+            <ul>
+              <li><a href="./index.html" class="active">home</a></li>
+              <li><a href="./About.html">about</a></li>
+              <li><a href="./Portfolio.html">portfolio</a></li>
+              <li><a href="./Allblogs.html">Blog</a></li>
+              <li><a href="./contact.html">contact</a></li>
+              <li class="dropdown">
+                <a class="nav_login" href="#"
+                  >Dashboard <i class="fa fa-caret-down"></i
+                ></a>
+                <div class="dropdown-content">
+                  <a href="./index.html">Dashboard</a>
+                  <a href="../../pages/login.html" onclick="logout()">Logout</a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <!-- MAIN PAGE FOR HOME PAGE -->
+    <main>
+      <div class="description_container">
+        <div class="description">
+          <h2>Hello, I am</h2>
+          <h2>Abdoul khaliq</h2>
+        </div>
+        <div class="par_description">
+          <p>
+            I design and develop services for customers of all <br />
+            sizes, specialization in creating stylish, modern website, <br />
+            web services and online stores.
+          </p>
+        </div>
+        <div>
+          <button class="btn_readmore">
+            <a href="./About.html">read more</a>
+          </button>
+        </div>
+      </div>
+      <div class="profile_container">
+        <img src="../../Assets/img/Profile.png" alt="profile" id="profile" />
+      </div>
+    </main>
+    <script>
+      function logout(){
+        localStorage.setItem("auth-token","undefined");
+      }
+    </script>
+  </body>
+</html>

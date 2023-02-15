@@ -176,8 +176,6 @@
             }
           );
           const result = await response.json();
-          document.getElementById("popupImage").src = "../Assets/img/error.jpg";
-          document.getElementById("popupMessage").innerHTML = "Error!";
           document.getElementById(
             "popupGreatMessage"
           ).innerHTML = `${result.message}`;

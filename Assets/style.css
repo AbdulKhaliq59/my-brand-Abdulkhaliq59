@@ -1060,9 +1060,15 @@ p {
 }
 
 /* Style for blog.html */
+#single-blog > * {
+  margin-bottom: 30px;
+}
+
 #single-blog {
   padding: 50px 0;
   background-color: #f8f8f8;
+  display: grid;
+  grid-row: auto;
 }
 
 .single-blog-heading {
@@ -1086,6 +1092,7 @@ p {
 /* Single Blog container */
 .single-blog-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-bottom: 50px;
@@ -1093,23 +1100,29 @@ p {
 
 /* image */
 #blog-img {
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /* Text */
 .single-blog-text {
-  width: 50%;
+  width: 100%;
+  max-width: 800px;
   text-align: center;
   font-size: 1.2em;
+  margin-top: 50px;
 }
 
 .single-blog-text p {
   font-size: 18px;
   color: #333;
   line-height: 1.5;
+  text-align: justify;
+  hyphens: auto;
+  font-weight: 100;
 }
 
 /* Comments section */
@@ -1138,9 +1151,12 @@ h3 {
 .single-comment {
   margin-bottom: 20px;
 }
-
+.single-comment p{
+  font-weight: 100;
+}
 .username {
   font-weight: bold;
+  margin-right: 12px;
 }
 
 .add-comment {
@@ -1149,8 +1165,18 @@ h3 {
   flex-direction: column;
   align-items: center;
   margin-top: 30px;
+  position: relative;
 }
-
+.add-comment textarea {
+  width: 100%;
+  border-radius: 12px;
+  padding: 10px;
+}
+.comment{
+  margin-top: 20px;
+  margin-left: 16px;
+  font-weight: 100;
+}
 #comment-form {
   display: flex;
   flex-direction: column;
@@ -1158,8 +1184,11 @@ h3 {
 }
 
 .comments-section input[type="submit"] {
-  display: block;
-  margin: 10px auto;
+  position: absolute;
+  right: 0;
+  top: 90%;
+  margin-right: 190px;
+  transform: translateY(-50%);
   padding: 10px 20px;
   background-color: #0466c8;
   color: #fff;
@@ -1169,8 +1198,9 @@ h3 {
 }
 
 .comments-section input[type="submit"]:hover {
-  background-color: #fff;
-  color: #0466c8;
+  background-color: #2183e6;
+  transition: 1s;
+  color: #fff;
 }
 
 /* 
