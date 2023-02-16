@@ -1151,7 +1151,7 @@ h3 {
 .single-comment {
   margin-bottom: 20px;
 }
-.single-comment p{
+.single-comment p {
   font-weight: 100;
 }
 .username {
@@ -1172,7 +1172,7 @@ h3 {
   border-radius: 12px;
   padding: 10px;
 }
-.comment{
+.comment {
   margin-top: 20px;
   margin-left: 16px;
   font-weight: 100;
@@ -1202,7 +1202,4 @@ h3 {
   transition: 1s;
   color: #fff;
 }
-
-/* 
-
- */
+/* onload animation For login page */

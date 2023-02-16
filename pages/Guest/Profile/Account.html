@@ -1,3 +1,11 @@
+<script>
+    // Check if authentication token is defined in local storage
+    const authToken = localStorage.getItem("auth-token");
+    if (!authToken || authToken === "undefined") {
+      // Redirect to login page or error page
+      window.location.href = "../../../pages/login.html"; // replace with the URL of your login page or error page
+    }
+  </script>
 <!DOCTYPE html>
 <html lang="en">
 <head>

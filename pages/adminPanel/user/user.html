@@ -1,3 +1,11 @@
+<script>
+  // Check if authentication token is defined in local storage
+  const authToken = localStorage.getItem("auth-token");
+  if (!authToken || authToken === "undefined") {
+    // Redirect to login page or error page
+    window.location.href = "../../login.html"; // replace with the URL of your login page or error page
+  }
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +38,7 @@
                                 <i class="fa-sharp fa-solid fa-caret-down"></i>
                             <div class="dropdown-content">
                                 <a href="../Profile/profile.html">settings</a>
-                                <a href="../../../index.html">Logout</a>
+                                <a href="../../../index.html" onclick="logout()">Logout</a>
                             </div>
                             </div>
                         </div>
@@ -103,37 +111,12 @@
       `;
     }
     window.onload = table;
-
-
-
-
-        // let userDetails= JSON.parse(localStorage.getItem('userDetails'));
-        // console.log(userDetails);
-        // let table=`<thead>
-        //                     <th>SN</th>
-        //                     <th>email</th>
-        //                     <th>Password</th>
-        //                     <th colspan="3">Actions</th>
-        //             </thead>`;
-        // let tbody=`<tbody>`
-        //     for(let i=0; i<userDetails.length;i++)
-        //     {
-        //         table=table+`<tr>
-        //             <td>${i+1}</td>
-        //             <td>${userDetails[i].email}</td>
-        //             <td>${userDetails[i].password}</td>
-        //             <td><a href="" class="delete" onClick="deleteUser(${i})">Delete</a></td>
-        //             </tr>`
-        //     }
-        //     table=table+`</tbody>
-        //     </table>`;
-        //     document.getElementById('tableBody').innerHTML=table;
-        //     function deleteUser(index)
-        //     {
-        //      userDetails.splice(index,1);
-        //      localStorage.setItem("userDetails",JSON.stringify(userDetails));
-        //      document.getElementById('tableBody').innerHTML=table;
-        //     }
+    function logout()
+    {
+      localStorage.setItem("auth-token",undefined);
+      const token=localStorage.getItem('auth-token');
+      console.log(token);
+    }
      </script>
 </body>
 </html>
