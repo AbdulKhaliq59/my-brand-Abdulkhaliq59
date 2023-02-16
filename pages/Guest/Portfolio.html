@@ -1,113 +1,109 @@
+<script>
+  // Check if authentication token is defined in local storage
+  const authToken = localStorage.getItem("auth-token");
+  if (!authToken || authToken === "undefined") {
+    // Redirect to login page or error page
+    window.location.href = "../../pages/login.html"; // replace with the URL of your login page or error page
+  }
+</script>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../Assets/img/Logo.png" type="image/png">   
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../Assets/img/Logo.png" type="image/png" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
-    <link rel="stylesheet" href="./guest.css">
+    <link rel="stylesheet" href="./guest.css" />
     <title>Portfolio</title>
-</head>
-<body>
-     <!-- ============  HEADER ========== -->
-     <header class="header">
+  </head>
+  <body>
+    <!-- ============  HEADER ========== -->
+    <header class="header">
       <div class="container">
-          <div class="row align-items-center justify-content-between">
-             <div class="logo">
-               <a href="../index.html"><img src="../../Assets/img/Logo.png" alt=""></a>
-             </div>
-             <input type="checkbox" id="nav-check">
-             <label for="nav-check" class="nav-toggler">
-                <span></span>
-             </label>
-             <nav class="nav">
-              <ul>
-                <li><a href="./home.html" class="active">home</a></li>
-                <li><a href="./About.html">about</a></li>
-                <li><a href="./Portfolio.html">portfolio</a></li>
-                <li><a href="./Allblogs.html">Blog</a></li>
-                <li><a href="./contact.html">contact</a></li>
-                <li class="dropdown">
-                  <a class="nav_login" href="#"
-                    >Dashboard <i class="fa fa-caret-down"></i
-                  ></a>
-                  <div class="dropdown-content">
-                    <a href="./index.html">Dashboard</a>
-                    <a href="../../pages/login.html">Logout</a>
-                  </div>
-                </li>
-              </ul>
-            </nav>
+        <div class="row align-items-center justify-content-between">
+          <div class="logo">
+            <a href="../index.html"
+              ><img src="../../Assets/img/Logo.png" alt=""
+            /></a>
           </div>
-      </div>
-   </header>
-
-      <!-- ============== Portfolio ========== -->
-      <main class="main_portfolio">
-        <div class="portfolio_content">
-          
-          <div class="portfolio_content_header">
-            <div class="portfolio_title">
-              <h1 class="portfolio_title_header">Portfolio</h1><br>
-            <p class="portfolio_title_desc">Most recent work</p>
-            </div>
-          </div>
-          <!-- Portfolio 1 -->
-          <div class="portfolio_content_description" id="portfolio">
-            <div class="portfolio_image">
-              <img src="../../Assets/img/moderWebsite.png" alt="modern website">
-            </div>
-            <div class="portfolio_description">
-              <div class="portfolio_description_title">
-                <h1 class="portfolio_description_header">Modern Website</h1>
-              </div>
-              <div class="portfolio_description_body">
-                <p>Website adaptable  to all <br> devices, with ui <br> components and animated <br> interactions</p>
-              </div>
-              <div class="portfolio_description_button">
-                <button>Demo</button>
-              </div>
-            </div>
-          </div>
-          <!-- Portfolio 2 -->
-          <!-- <div class="portfolio_content_description" id="portfolio">
-            <div class="portfolio_image">
-              <img src="../Assets/img/onlineShop.png" alt="modern website">
-            </div>
-            <div class="portfolio_description">
-              <div class="portfolio_description_title">
-                <h1 class="portfolio_description_header">onine shop</h1>
-              </div>
-              <div class="portfolio_description_body">
-                <p>Website adaptable  to all <br> devices, with ui <br> components and animated <br> interactions</p>
-              </div>
-              <div class="portfolio_description_button">
-                <button>Demo</button>
-              </div>
-            </div>
-          </div> -->
-          <!-- <div class="slide">
-            <input type="radio" name="" id="radio1">
-            <input type="radio" name="" id="radio1" checked>
-            <input type="radio" name="" id="radio1">
-          </div> -->
+          <input type="checkbox" id="nav-check" />
+          <label for="nav-check" class="nav-toggler">
+            <span></span>
+          </label>
+          <nav class="nav">
+            <ul>
+              <li><a href="./home.html" class="active">home</a></li>
+              <li><a href="./About.html">about</a></li>
+              <li><a href="./Portfolio.html">portfolio</a></li>
+              <li><a href="./Allblogs.html">Blog</a></li>
+              <li><a href="./contact.html">contact</a></li>
+              <li class="dropdown">
+                <a class="nav_login" href="#"
+                  >Dashboard <i class="fa fa-caret-down"></i
+                ></a>
+                <div class="dropdown-content">
+                  <a href="./index.html">Dashboard</a>
+                  <a href="../../pages/login.html" onclick="logout()">Logout</a>
+                </div>
+              </li>
+            </ul>
+          </nav>
         </div>
-        
-      </main>
-      <script>
-       var portfolios=document.getElementById('portfolio');
-       var currentPortfolio=0;
-       function showNextPortfolio()
-       {
-        portfolios[currentPortfolio].style.display="none";
-        currentPortfolio=(currentPortfolio+1) % portfolios.length; 
-        portfolio[currentPortfolio].style.display="block";
-       }
-       setInterval(showNextPortfolio,3000)
-      </script>
-</body>
+      </div>
+    </header>
+
+    <!-- ============== Portfolio ========== -->
+    <main class="main_portfolio">
+      <div class="portfolio_content">
+        <div class="portfolio_content_header">
+          <div class="portfolio_title">
+            <h1 class="portfolio_title_header">Portfolio</h1>
+            <br />
+            <p class="portfolio_title_desc">Most recent work</p>
+          </div>
+        </div>
+        <!-- Portfolio 1 -->
+        <div class="portfolio_content_description" id="portfolio">
+          <div class="portfolio_image">
+            <img src="../../Assets/img/moderWebsite.png" alt="modern website" />
+          </div>
+          <div class="portfolio_description">
+            <div class="portfolio_description_title">
+              <h1 class="portfolio_description_header">Modern Website</h1>
+            </div>
+            <div class="portfolio_description_body">
+              <p>
+                Website adaptable to all <br />
+                devices, with ui <br />
+                components and animated <br />
+                interactions
+              </p>
+            </div>
+            <div class="portfolio_description_button">
+              <button>Demo</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      var portfolios = document.getElementById("portfolio");
+      var currentPortfolio = 0;
+      function showNextPortfolio() {
+        portfolios[currentPortfolio].style.display = "none";
+        currentPortfolio = (currentPortfolio + 1) % portfolios.length;
+        portfolio[currentPortfolio].style.display = "block";
+      }
+      setInterval(showNextPortfolio, 3000);
+      function logout() {
+        localStorage.setItem("auth-token", undefined);
+        const token = localStorage.getItem("auth-token");
+        console.log(token);
+      }
+    </script>
+  </body>
 </html>
