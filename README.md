@@ -25,7 +25,6 @@ List of libraries, tools, etc needed (e.g. yarn, node.js, python, etc)
 ### Getting Started
 
 -`git clone  https://github.com/AbdulKhaliq59/my-brand-Abdulkhaliq59.git`
-List of steps to get started (e.g. clone repo, submodule, .env file, etc)
 
 ### Run The Service
 
