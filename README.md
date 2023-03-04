@@ -1,7 +1,6 @@
 ## my-brand-Abdulkhaliq59
 
-1 sentence tagline
-
+Capstone Project Frontend
 # Description
 
 - This is front end for capstone project,
